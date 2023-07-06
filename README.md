@@ -1,5 +1,5 @@
-# Million Game
-من سيربح المليون
+# من سيربح المليون
+
 <br>
 used language: C# 
 <br>
