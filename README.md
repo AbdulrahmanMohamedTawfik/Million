@@ -1,6 +1,6 @@
 # Million Game
 من سيربح المليون
- game
+\n
 used language: C# 
 framework: .net framework 
 winforms question & answer game with two languages and score track 
