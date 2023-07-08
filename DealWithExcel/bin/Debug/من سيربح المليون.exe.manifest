@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="من سيربح المليون.exe" size="2015704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="من سيربح المليون.exe" size="3838936">
       <assemblyIdentity name="من سيربح المليون" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ccqtMK+O2zE7qxau92YS1HJzvPqWhziyHvbKwSoV4VI=</dsig:DigestValue>
+        <dsig:DigestValue>aZOXlAPkOGSB4e6Q6JsVr0q2tcu6r0F+IhcLkNOqr7U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

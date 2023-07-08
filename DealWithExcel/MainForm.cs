@@ -24,12 +24,12 @@ namespace DealWithExcel
         {
             Form1 f = new Form1(language, Difficulty);
             f.Show();
-            Hide();
+            //Hide();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
 
         private void easy_rad_btn_CheckedChanged(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace DealWithExcel
         private void med_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
             Difficulty = 25;
-            Start_btn.BackColor = Color.LightBlue;
+            Start_btn.BackColor = Color.DeepSkyBlue;
         }
 
         private void hard_rad_btn_CheckedChanged(object sender, EventArgs e)
@@ -70,6 +70,7 @@ namespace DealWithExcel
             easy_rad_btn.Text = "Easy";
             med_rad_btn.Text = "Medium";
             hard_rad_btn.Text = "Hard";
+            difficulty_groupBox.RightToLeft = RightToLeft.No;
         }
 
         private void ar_radioButton_CheckedChanged(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace DealWithExcel
             easy_rad_btn.Text = "سهل";
             med_rad_btn.Text = "متوسط";
             hard_rad_btn.Text = "صعب";
-
+            difficulty_groupBox.RightToLeft = RightToLeft.Yes;
         }
 
         private void lang_groupBox_Enter(object sender, EventArgs e)
@@ -90,6 +91,11 @@ namespace DealWithExcel
         }
 
         private void difficulty_groupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Leave(object sender, EventArgs e)
         {
 
         }

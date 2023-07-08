@@ -12,14 +12,15 @@ namespace DealWithExcel
 {
     public partial class ResultForm : Form
     {
-        private int receivedScore, received_num_of_questions;
+        private int receivedmoney, receivedScore, received_num_of_questions;
         private string language;
-        public ResultForm(string lang, int score, int num_of_questions)
+        public ResultForm(string lang, int money, int score, int num_of_questions)
         {
             InitializeComponent();
             receivedScore = score;
             received_num_of_questions = num_of_questions;
             language = lang;
+            receivedmoney = money;
         }
 
         private void ResultForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -42,12 +43,26 @@ namespace DealWithExcel
             float percentage = ((float)receivedScore / (float)received_num_of_questions) * 100;
             if (language == "arabic")
             {
-                Result_txt.Text = " انت جاوبت علي " + receivedScore.ToString() + " سؤال صح من اصل " + received_num_of_questions.ToString() + " سؤال \n يعني بنسبة  %" + percentage.ToString();
+                OK_btn.Text = "ماشي";
+                play_again_btn.Text = "العب تاني";
+                Result_txt.RightToLeft = RightToLeft.Yes;
+                Result_txt.Text = " انت جاوبت علي " + receivedScore.ToString() + " سؤال صح من اصل " + received_num_of_questions.ToString() + " سؤال \n يعني بنسبة  %" + percentage.ToString() + "\n مبروك صار معك " + receivedmoney + " جنيه مصري ";
+                if (receivedmoney==1000_000)
+                {
+                    Result_txt.Text += "\n********* مبروك ربحت المليون *********";
+                }
                 label1.Text = "مع تحيات: عبدالرحمن محمد توفيق";
             }
             else if (language == "english")
             {
-                Result_txt.Text = "your Score is " + receivedScore.ToString() + "/" + received_num_of_questions.ToString() + "\nand your Percentage is " + percentage.ToString() + "%";
+                OK_btn.Text = "OK";
+                play_again_btn.Text = "Play Again";
+                Result_txt.RightToLeft = RightToLeft.No;
+                Result_txt.Text = "your Score is " + receivedScore.ToString() + "/" + received_num_of_questions.ToString() + "\nand your Percentage is " + percentage.ToString() + "%\nCongratulations, you have " + receivedmoney + " L.E";
+                if (receivedmoney == 1000_000)
+                {
+                    Result_txt.Text += "\n********* Congrats You Won The Million *********";
+                }
                 label1.Text = "Made by: Abdulrahman Mohamed Tawfik";
             }
         }
