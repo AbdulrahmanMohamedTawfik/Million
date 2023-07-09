@@ -56,6 +56,8 @@
             this.people_help_btn = new System.Windows.Forms.Button();
             this.x_call_btn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Exit_btn = new System.Windows.Forms.Button();
+            this.Leave_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +80,7 @@
             this.Show_All_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Show_All_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Show_All_btn.ForeColor = System.Drawing.Color.White;
-            this.Show_All_btn.Location = new System.Drawing.Point(1448, 737);
+            this.Show_All_btn.Location = new System.Drawing.Point(1644, 981);
             this.Show_All_btn.Name = "Show_All_btn";
             this.Show_All_btn.Size = new System.Drawing.Size(175, 30);
             this.Show_All_btn.TabIndex = 4;
@@ -98,7 +100,7 @@
             this.choice1a_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice1a_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice1a_btn.ForeColor = System.Drawing.Color.White;
-            this.choice1a_btn.Location = new System.Drawing.Point(270, 479);
+            this.choice1a_btn.Location = new System.Drawing.Point(368, 601);
             this.choice1a_btn.Name = "choice1a_btn";
             this.choice1a_btn.Size = new System.Drawing.Size(451, 111);
             this.choice1a_btn.TabIndex = 5;
@@ -118,7 +120,7 @@
             this.choice2b_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice2b_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice2b_btn.ForeColor = System.Drawing.Color.White;
-            this.choice2b_btn.Location = new System.Drawing.Point(727, 479);
+            this.choice2b_btn.Location = new System.Drawing.Point(825, 601);
             this.choice2b_btn.Name = "choice2b_btn";
             this.choice2b_btn.Size = new System.Drawing.Size(451, 111);
             this.choice2b_btn.TabIndex = 6;
@@ -138,7 +140,7 @@
             this.choice3c_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice3c_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice3c_btn.ForeColor = System.Drawing.Color.White;
-            this.choice3c_btn.Location = new System.Drawing.Point(270, 596);
+            this.choice3c_btn.Location = new System.Drawing.Point(368, 718);
             this.choice3c_btn.Name = "choice3c_btn";
             this.choice3c_btn.Size = new System.Drawing.Size(451, 111);
             this.choice3c_btn.TabIndex = 7;
@@ -158,7 +160,7 @@
             this.choice4d_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice4d_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice4d_btn.ForeColor = System.Drawing.Color.White;
-            this.choice4d_btn.Location = new System.Drawing.Point(727, 596);
+            this.choice4d_btn.Location = new System.Drawing.Point(825, 718);
             this.choice4d_btn.Name = "choice4d_btn";
             this.choice4d_btn.Size = new System.Drawing.Size(451, 111);
             this.choice4d_btn.TabIndex = 8;
@@ -173,7 +175,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.Question_txt);
-            this.panel1.Location = new System.Drawing.Point(119, 197);
+            this.panel1.Location = new System.Drawing.Point(217, 319);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1233, 184);
             this.panel1.TabIndex = 9;
@@ -195,7 +197,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.ForeColor = System.Drawing.SystemColors.Control;
-            this.panel2.Location = new System.Drawing.Point(1342, 38);
+            this.panel2.Location = new System.Drawing.Point(1538, 160);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(377, 693);
             this.panel2.TabIndex = 11;
@@ -362,7 +364,7 @@
             // 
             // withdraw_btn
             // 
-            this.withdraw_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.withdraw_btn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.withdraw_btn.BackColor = System.Drawing.Color.Transparent;
             this.withdraw_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("withdraw_btn.BackgroundImage")));
             this.withdraw_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -372,7 +374,7 @@
             this.withdraw_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.withdraw_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.withdraw_btn.ForeColor = System.Drawing.Color.White;
-            this.withdraw_btn.Location = new System.Drawing.Point(662, 713);
+            this.withdraw_btn.Location = new System.Drawing.Point(760, 911);
             this.withdraw_btn.Name = "withdraw_btn";
             this.withdraw_btn.Size = new System.Drawing.Size(110, 100);
             this.withdraw_btn.TabIndex = 12;
@@ -392,7 +394,7 @@
             this.help_50_50_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.help_50_50_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.help_50_50_btn.ForeColor = System.Drawing.Color.White;
-            this.help_50_50_btn.Location = new System.Drawing.Point(338, 64);
+            this.help_50_50_btn.Location = new System.Drawing.Point(436, 186);
             this.help_50_50_btn.Name = "help_50_50_btn";
             this.help_50_50_btn.Size = new System.Drawing.Size(212, 100);
             this.help_50_50_btn.TabIndex = 13;
@@ -410,7 +412,7 @@
             this.x_50_50_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.x_50_50_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.x_50_50_btn.ForeColor = System.Drawing.Color.White;
-            this.x_50_50_btn.Location = new System.Drawing.Point(338, 64);
+            this.x_50_50_btn.Location = new System.Drawing.Point(436, 186);
             this.x_50_50_btn.Name = "x_50_50_btn";
             this.x_50_50_btn.Size = new System.Drawing.Size(212, 100);
             this.x_50_50_btn.TabIndex = 16;
@@ -427,7 +429,7 @@
             this.x_people_help_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.x_people_help_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.x_people_help_btn.ForeColor = System.Drawing.Color.White;
-            this.x_people_help_btn.Location = new System.Drawing.Point(578, 64);
+            this.x_people_help_btn.Location = new System.Drawing.Point(676, 186);
             this.x_people_help_btn.Name = "x_people_help_btn";
             this.x_people_help_btn.Size = new System.Drawing.Size(212, 100);
             this.x_people_help_btn.TabIndex = 18;
@@ -445,7 +447,7 @@
             this.call_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.call_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.call_btn.ForeColor = System.Drawing.Color.White;
-            this.call_btn.Location = new System.Drawing.Point(833, 64);
+            this.call_btn.Location = new System.Drawing.Point(931, 186);
             this.call_btn.Name = "call_btn";
             this.call_btn.Size = new System.Drawing.Size(212, 100);
             this.call_btn.TabIndex = 17;
@@ -464,7 +466,7 @@
             this.people_help_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.people_help_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.people_help_btn.ForeColor = System.Drawing.Color.White;
-            this.people_help_btn.Location = new System.Drawing.Point(578, 64);
+            this.people_help_btn.Location = new System.Drawing.Point(676, 186);
             this.people_help_btn.Name = "people_help_btn";
             this.people_help_btn.Size = new System.Drawing.Size(212, 100);
             this.people_help_btn.TabIndex = 19;
@@ -474,14 +476,14 @@
             // x_call_btn
             // 
             this.x_call_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.x_call_btn.BackColor = System.Drawing.Color.Transparent;
+            this.x_call_btn.BackColor = System.Drawing.Color.Black;
             this.x_call_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("x_call_btn.BackgroundImage")));
             this.x_call_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.x_call_btn.FlatAppearance.BorderSize = 0;
             this.x_call_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.x_call_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.x_call_btn.ForeColor = System.Drawing.Color.White;
-            this.x_call_btn.Location = new System.Drawing.Point(833, 64);
+            this.x_call_btn.Location = new System.Drawing.Point(931, 186);
             this.x_call_btn.Name = "x_call_btn";
             this.x_call_btn.Size = new System.Drawing.Size(212, 100);
             this.x_call_btn.TabIndex = 20;
@@ -491,13 +493,51 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Exit_btn
+            // 
+            this.Exit_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Exit_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Exit_btn.BackgroundImage")));
+            this.Exit_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Exit_btn.FlatAppearance.BorderSize = 0;
+            this.Exit_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.Exit_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.Exit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Exit_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Exit_btn.ForeColor = System.Drawing.Color.Transparent;
+            this.Exit_btn.Location = new System.Drawing.Point(12, 12);
+            this.Exit_btn.Name = "Exit_btn";
+            this.Exit_btn.Size = new System.Drawing.Size(66, 46);
+            this.Exit_btn.TabIndex = 21;
+            this.Exit_btn.UseVisualStyleBackColor = false;
+            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
+            // 
+            // Leave_btn
+            // 
+            this.Leave_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Leave_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Leave_btn.BackgroundImage")));
+            this.Leave_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Leave_btn.FlatAppearance.BorderSize = 0;
+            this.Leave_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.Leave_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.Leave_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Leave_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Leave_btn.ForeColor = System.Drawing.Color.Transparent;
+            this.Leave_btn.Location = new System.Drawing.Point(101, 12);
+            this.Leave_btn.Name = "Leave_btn";
+            this.Leave_btn.Size = new System.Drawing.Size(66, 46);
+            this.Leave_btn.TabIndex = 22;
+            this.Leave_btn.UseVisualStyleBackColor = false;
+            this.Leave_btn.Click += new System.EventHandler(this.Leave_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1731, 783);
+            this.ClientSize = new System.Drawing.Size(1927, 1027);
+            this.Controls.Add(this.Leave_btn);
+            this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.x_call_btn);
             this.Controls.Add(this.people_help_btn);
             this.Controls.Add(this.x_people_help_btn);
@@ -512,12 +552,14 @@
             this.Controls.Add(this.choice3c_btn);
             this.Controls.Add(this.choice2b_btn);
             this.Controls.Add(this.choice1a_btn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Game";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -551,6 +593,8 @@
         private System.Windows.Forms.Button people_help_btn;
         private System.Windows.Forms.Button x_call_btn;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button Exit_btn;
+        private System.Windows.Forms.Button Leave_btn;
     }
 }
 

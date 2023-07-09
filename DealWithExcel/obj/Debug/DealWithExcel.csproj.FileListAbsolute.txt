@@ -1,4 +1,3 @@
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.csproj.AssemblyReference.cache
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.Form1.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.Properties.Resources.resources
@@ -14,14 +13,14 @@ C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\ExcelDat
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.MainForm.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.Form2.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.ResultForm.resources
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون.pdb
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون.pdb
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون.exe.config
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون.exe.manifest
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون.application
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون.exe
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\DealWithExcel.csproj.SuggestedBindingRedirects.cache
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون.TrustInfo.xml
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون.exe.manifest
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون.application
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون.exe
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون جنيه.exe.config
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون جنيه.exe.manifest
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون جنيه.application
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون جنيه.exe
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Debug\من سيربح المليون جنيه.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون جنيه.TrustInfo.xml
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون جنيه.exe.manifest
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون جنيه.application
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون جنيه.exe
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Debug\من سيربح المليون جنيه.pdb

@@ -33,6 +33,14 @@ namespace DealWithExcel
             Close();
         }
 
+        private void ResultForm_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+        }
+
         private void play_again_btn_Click(object sender, EventArgs e)
         {
             Close();
@@ -40,6 +48,15 @@ namespace DealWithExcel
 
         private void ResultForm_Load(object sender, EventArgs e)
         {
+            //show fireworks only if won the million
+            if (receivedmoney != 1000_000)
+            {
+                fireworks_pictureBox1.Hide();
+                fireworks_pictureBox2.Hide();
+                fireworks_pictureBox3.Hide();
+                fireworks_pictureBox4.Hide();
+            }
+            //achieved progress calculations
             float percentage = ((float)receivedScore / (float)received_num_of_questions) * 100;
             if (language == "arabic")
             {

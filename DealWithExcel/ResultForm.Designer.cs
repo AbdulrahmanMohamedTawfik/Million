@@ -35,8 +35,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.play_again_btn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.fireworks_pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.fireworks_pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.fireworks_pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.fireworks_pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // Result_txt
@@ -72,7 +80,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(556, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(723, 103);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(367, 298);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -110,7 +118,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -118,29 +126,95 @@
             this.panel1.Controls.Add(this.play_again_btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.OK_btn);
-            this.panel1.Location = new System.Drawing.Point(318, 316);
+            this.panel1.Location = new System.Drawing.Point(485, 407);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(835, 537);
             this.panel1.TabIndex = 10;
+            // 
+            // fireworks_pictureBox2
+            // 
+            this.fireworks_pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fireworks_pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.fireworks_pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox2.BackgroundImage")));
+            this.fireworks_pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fireworks_pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox2.Image")));
+            this.fireworks_pictureBox2.Location = new System.Drawing.Point(1407, 20);
+            this.fireworks_pictureBox2.Name = "fireworks_pictureBox2";
+            this.fireworks_pictureBox2.Size = new System.Drawing.Size(436, 290);
+            this.fireworks_pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fireworks_pictureBox2.TabIndex = 11;
+            this.fireworks_pictureBox2.TabStop = false;
+            // 
+            // fireworks_pictureBox1
+            // 
+            this.fireworks_pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.fireworks_pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox1.Image")));
+            this.fireworks_pictureBox1.Location = new System.Drawing.Point(40, 20);
+            this.fireworks_pictureBox1.Name = "fireworks_pictureBox1";
+            this.fireworks_pictureBox1.Size = new System.Drawing.Size(436, 290);
+            this.fireworks_pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fireworks_pictureBox1.TabIndex = 12;
+            this.fireworks_pictureBox1.TabStop = false;
+            // 
+            // fireworks_pictureBox4
+            // 
+            this.fireworks_pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.fireworks_pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.fireworks_pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox4.BackgroundImage")));
+            this.fireworks_pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fireworks_pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox4.Image")));
+            this.fireworks_pictureBox4.Location = new System.Drawing.Point(1407, 731);
+            this.fireworks_pictureBox4.Name = "fireworks_pictureBox4";
+            this.fireworks_pictureBox4.Size = new System.Drawing.Size(436, 290);
+            this.fireworks_pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fireworks_pictureBox4.TabIndex = 13;
+            this.fireworks_pictureBox4.TabStop = false;
+            // 
+            // fireworks_pictureBox3
+            // 
+            this.fireworks_pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.fireworks_pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.fireworks_pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox3.BackgroundImage")));
+            this.fireworks_pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fireworks_pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("fireworks_pictureBox3.Image")));
+            this.fireworks_pictureBox3.Location = new System.Drawing.Point(40, 731);
+            this.fireworks_pictureBox3.Name = "fireworks_pictureBox3";
+            this.fireworks_pictureBox3.Size = new System.Drawing.Size(436, 290);
+            this.fireworks_pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.fireworks_pictureBox3.TabIndex = 14;
+            this.fireworks_pictureBox3.TabStop = false;
             // 
             // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1590, 872);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.fireworks_pictureBox3);
+            this.Controls.Add(this.fireworks_pictureBox4);
+            this.Controls.Add(this.fireworks_pictureBox1);
+            this.Controls.Add(this.fireworks_pictureBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ResultForm";
             this.Text = "Result";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ResultForm_FormClosed);
             this.Load += new System.EventHandler(this.ResultForm_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ResultForm_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -153,5 +227,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button play_again_btn;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox fireworks_pictureBox2;
+        private System.Windows.Forms.PictureBox fireworks_pictureBox1;
+        private System.Windows.Forms.PictureBox fireworks_pictureBox4;
+        private System.Windows.Forms.PictureBox fireworks_pictureBox3;
     }
 }

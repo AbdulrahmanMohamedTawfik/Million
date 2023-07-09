@@ -85,7 +85,7 @@ namespace DealWithExcel
         private void Show_All_btn_Click(object sender, EventArgs e)
         {
             bool isForm2Open = Application.OpenForms.OfType<Form2>().Any();
-
+            
             if (!isForm2Open)
             {
                 if (Difficulty != 30)
@@ -98,6 +98,12 @@ namespace DealWithExcel
 
         private void choice1a_btn_Click(object sender, EventArgs e)
         {
+            //disable rest choices
+            choice2b_btn.Enabled = false; 
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+
+            choice1a_btn.BackColor = Color.DarkOrange;
             if (dataSet.Tables[0].Rows[row][5].ToString() == "a")
             {
                 score++;
@@ -107,13 +113,18 @@ namespace DealWithExcel
             }
             else
             {
-                choice1a_btn.BackColor = Color.Red;
-                Show_Correct_Answer();
+                Show_Correct_Answer('a');
             }
         }
 
         private void choice2b_btn_Click(object sender, EventArgs e)
         {
+            //disable rest choices
+            choice1a_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+
+            choice2b_btn.BackColor = Color.DarkOrange;
             if (dataSet.Tables[0].Rows[row][5].ToString() == "b")
             {
                 score++;
@@ -123,13 +134,18 @@ namespace DealWithExcel
             }
             else
             {
-                choice2b_btn.BackColor = Color.Red;
-                Show_Correct_Answer();
+                Show_Correct_Answer('b');
             }
         }
 
         private void choice3c_btn_Click(object sender, EventArgs e)
         {
+            //disable rest choices
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+
+            choice3c_btn.BackColor = Color.DarkOrange;
             if (dataSet.Tables[0].Rows[row][5].ToString() == "c")
             {
                 score++;
@@ -139,13 +155,18 @@ namespace DealWithExcel
             }
             else
             {
-                choice3c_btn.BackColor = Color.Red;
-                Show_Correct_Answer();
+                Show_Correct_Answer('c');
             }
         }
 
         private void choice4d_btn_Click(object sender, EventArgs e)
         {
+            //disable rest choices
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+
+            choice4d_btn.BackColor = Color.DarkOrange;
             if (dataSet.Tables[0].Rows[row][5].ToString() == "d")
             {
                 score++;
@@ -155,8 +176,7 @@ namespace DealWithExcel
             }
             else
             {
-                choice4d_btn.BackColor = Color.Red;
-                Show_Correct_Answer();
+                Show_Correct_Answer('d');   
             }
         }
 
@@ -261,27 +281,69 @@ namespace DealWithExcel
             resultForm.ShowDialog();
         }
 
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+        }
+
+        private void Exit_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = DialogResult.No;
+            if (language == "arabic")
+            {
+                result = MessageBox.Show("عايز تخرج من اللعبة اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            else if (language == "english")
+            {
+                result = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void Leave_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = DialogResult.No;
+            if (language == "arabic")
+            {
+                result = MessageBox.Show("عايز ترجع للشاشة الرئيسية اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            else if (language == "english")
+            {
+                result = MessageBox.Show("Are you sure you want to go to Home Screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            if (result == DialogResult.Yes)
+            {
+               Close();
+            }
+        }
+
         private async void Change_Question()
         {
-            //enable all choices buttons after 2 is disabled by 50:50 button
-            choice1a_btn.Enabled = true;
-            choice2b_btn.Enabled = true;
-            choice3c_btn.Enabled = true;
-            choice4d_btn.Enabled = true;
             //add some suspense
             await Task.Delay(2000); // Wait for 2 seconds
             if (money == 500_000)
-                await Task.Delay(500); // Wait for additional .4 seconds
+                await Task.Delay(500); // Wait for additional .5 seconds
             else if (money == 600_000)
                 await Task.Delay(600); // Wait for additional .6 seconds
             else if (money == 700_000)
-                await Task.Delay(700); // Wait for additional .6 seconds
+                await Task.Delay(700); // Wait for additional .7 seconds
             else if (money == 800_000)
-                await Task.Delay(800); // Wait for additional .6 seconds
+                await Task.Delay(800); // Wait for additional .8 seconds
             else if (money == 900_000)
-                await Task.Delay(900); // Wait for additional .6 seconds
+                await Task.Delay(900); // Wait for additional .9 seconds
             else if (money == 1000_000)
-                await Task.Delay(1000); // Wait for additional .6 seconds
+                await Task.Delay(1000); // Wait for additional 1 seconds
+            //reset backcolor after changing it by clicking choice button
+            choice1a_btn.BackColor = Color.Transparent;
+            choice2b_btn.BackColor = Color.Transparent;
+            choice3c_btn.BackColor = Color.Transparent;
+            choice4d_btn.BackColor = Color.Transparent;
             //generate random question id(row number)
             do
             {                                                  //Easy ,  Med  , Hard
@@ -316,6 +378,11 @@ namespace DealWithExcel
             choice3c_btn.Text = dataSet.Tables[0].Rows[row][3].ToString();
             choice4d_btn.Text = dataSet.Tables[0].Rows[row][4].ToString();
             decreasing_couner--;
+            //enable all choices buttons after being disabled by clicking choice or by 50:50 button
+            choice1a_btn.Enabled = true;
+            choice2b_btn.Enabled = true;
+            choice3c_btn.Enabled = true;
+            choice4d_btn.Enabled = true;
         }
 
         private async void Change_money_Color()
@@ -326,7 +393,7 @@ namespace DealWithExcel
                     label1.BackColor = Color.Orange;
                     break;
                 case 100_000://2sec
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label1.BackColor = Color.Orange;
@@ -339,7 +406,7 @@ namespace DealWithExcel
                     label2.BackColor = Color.DarkOrange;
                     break;
                 case 200_000://2sec
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label2.BackColor = Color.Orange;
@@ -352,7 +419,7 @@ namespace DealWithExcel
                     label3.BackColor = Color.DarkOrange;
                     break;
                 case 300_000://2sec
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label3.BackColor = Color.Orange;
@@ -365,7 +432,7 @@ namespace DealWithExcel
                     label4.BackColor = Color.DarkOrange;
                     break;
                 case 400_000://2sec
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label4.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label4.BackColor = Color.Orange;
@@ -378,7 +445,7 @@ namespace DealWithExcel
                     label5.BackColor = Color.Orange;
                     break;
                 case 500_000://2+0.5 sec
-                    await Task.Delay(900); // Wait for .9 seconds
+                    await Task.Delay(1000); // Wait for 1 seconds
                     label5.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label5.BackColor = Color.Orange;
@@ -392,7 +459,7 @@ namespace DealWithExcel
                     label6.BackColor = Color.DarkOrange;
                     break;
                 case 600_000://2+0.6 sec
-                    await Task.Delay(1000); // Wait for 1 seconds
+                    await Task.Delay(1100); // Wait for 1.1 seconds
                     label6.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label6.BackColor = Color.Orange;
@@ -406,7 +473,7 @@ namespace DealWithExcel
                     label7.BackColor = Color.DarkOrange;
                     break;
                 case 700_000://2+0.7 sec
-                    await Task.Delay(1100); // Wait for 1.1 seconds
+                    await Task.Delay(1200); // Wait for 1.2 seconds
                     label7.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label7.BackColor = Color.Orange;
@@ -419,7 +486,7 @@ namespace DealWithExcel
                     label8.BackColor = Color.DarkOrange;
                     break;
                 case 800_000://2+0.8 sec
-                    await Task.Delay(1200); // Wait for 1.2 seconds
+                    await Task.Delay(1400); // Wait for 1.4 seconds
                     label8.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label8.BackColor = Color.Orange;
@@ -432,7 +499,7 @@ namespace DealWithExcel
                     label9.BackColor = Color.DarkOrange;
                     break;
                 case 900_000://2+0.9 sec
-                    await Task.Delay(1300); // Wait for 1.3 seconds
+                    await Task.Delay(1600); // Wait for 1.6 seconds
                     label9.BackColor = Color.Green;
                     await Task.Delay(400); // Wait for .4 seconds
                     label9.BackColor = Color.Orange;
@@ -447,10 +514,42 @@ namespace DealWithExcel
                 default:
                     break;
             }
+            
         }
 
-        private async void Show_Correct_Answer()
+        private async void Show_Correct_Answer(char wrong_clicked_ans)
         {
+            //add some suspense
+            await Task.Delay(2000); // Wait for 2 seconds
+            if (money == 500_000)
+                await Task.Delay(500); // Wait for additional .5 seconds
+            else if (money == 600_000)
+                await Task.Delay(600); // Wait for additional .6 seconds
+            else if (money == 700_000)
+                await Task.Delay(700); // Wait for additional .7 seconds
+            else if (money == 800_000)
+                await Task.Delay(800); // Wait for additional .8 seconds
+            else if (money == 900_000)
+                await Task.Delay(900); // Wait for additional .9 seconds
+            else if (money == 1000_000)
+                await Task.Delay(1000); // Wait for additional 1 seconds
+            switch(wrong_clicked_ans)
+            {
+                case 'a':
+                    choice1a_btn.BackColor = Color.Red;
+                    break;
+                case 'b':
+                    choice2b_btn.BackColor = Color.Red;
+                    break;
+                case 'c':
+                    choice3c_btn.BackColor = Color.Red;
+                    break;
+                case 'd':
+                    choice4d_btn.BackColor = Color.Red;
+                    break;
+                default:
+                    break;
+            }
             switch (dataSet.Tables[0].Rows[row][5].ToString())
             {
                 case "a":
