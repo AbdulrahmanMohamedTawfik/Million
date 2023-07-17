@@ -6,8 +6,6 @@ C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelD
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.DataSet.xml
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.csproj.AssemblyReference.cache
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.csproj.SuggestedBindingRedirects.cache
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.Form1.resources
-C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.Form2.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.MainForm.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.Properties.Resources.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.ResultForm.resources
@@ -24,3 +22,6 @@ C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من �
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.application
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.exe
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.GameForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.ShowDataForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.EndForm.resources

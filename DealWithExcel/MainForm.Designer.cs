@@ -78,7 +78,7 @@
             this.easy_rad_btn.TabStop = true;
             this.easy_rad_btn.Text = "Easy";
             this.easy_rad_btn.UseVisualStyleBackColor = false;
-            this.easy_rad_btn.CheckedChanged += new System.EventHandler(this.easy_rad_btn_CheckedChanged);
+            this.easy_rad_btn.CheckedChanged += new System.EventHandler(this.Easy_rad_btn_CheckedChanged);
             // 
             // med_rad_btn
             // 
@@ -91,7 +91,7 @@
             this.med_rad_btn.TabStop = true;
             this.med_rad_btn.Text = "Medium";
             this.med_rad_btn.UseVisualStyleBackColor = true;
-            this.med_rad_btn.CheckedChanged += new System.EventHandler(this.med_rad_btn_CheckedChanged);
+            this.med_rad_btn.CheckedChanged += new System.EventHandler(this.Med_rad_btn_CheckedChanged);
             // 
             // hard_rad_btn
             // 
@@ -104,7 +104,7 @@
             this.hard_rad_btn.TabStop = true;
             this.hard_rad_btn.Text = "Hard";
             this.hard_rad_btn.UseVisualStyleBackColor = true;
-            this.hard_rad_btn.CheckedChanged += new System.EventHandler(this.hard_rad_btn_CheckedChanged);
+            this.hard_rad_btn.CheckedChanged += new System.EventHandler(this.Hard_rad_btn_CheckedChanged);
             // 
             // difficulty_groupBox
             // 
@@ -172,7 +172,7 @@
             this.ar_radioButton.TabStop = true;
             this.ar_radioButton.Text = "العربية";
             this.ar_radioButton.UseVisualStyleBackColor = true;
-            this.ar_radioButton.CheckedChanged += new System.EventHandler(this.ar_radioButton_CheckedChanged);
+            this.ar_radioButton.CheckedChanged += new System.EventHandler(this.Ar_radioButton_CheckedChanged);
             // 
             // en_radioButton
             // 
@@ -184,7 +184,7 @@
             this.en_radioButton.TabStop = true;
             this.en_radioButton.Text = "English";
             this.en_radioButton.UseVisualStyleBackColor = true;
-            this.en_radioButton.CheckedChanged += new System.EventHandler(this.en_radioButton_CheckedChanged);
+            this.en_radioButton.CheckedChanged += new System.EventHandler(this.En_radioButton_CheckedChanged);
             // 
             // Exit_btn
             // 
@@ -216,12 +216,12 @@
             this.Controls.Add(this.lang_groupBox);
             this.Controls.Add(this.difficulty_groupBox);
             this.Controls.Add(this.Start_btn);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Game";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.difficulty_groupBox.ResumeLayout(false);

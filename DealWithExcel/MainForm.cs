@@ -23,33 +23,32 @@ namespace DealWithExcel
 
         private void Start_btn_Click(object sender, EventArgs e)
         {
-            Form1 f = new Form1(language, Difficulty);
-            f.Show();
-            //Hide();
+            bool isForm1Open = Application.OpenForms.OfType<GameForm>().Any();
+            if (isForm1Open)
+                Hide();
+            GameForm f = new GameForm(language, Difficulty);
+            f.ShowDialog();
+            Show();
         }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        //75 Arabic question
+        //60 English question
+        private void Easy_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            //Application.Exit();
-        }
-
-        private void easy_rad_btn_CheckedChanged(object sender, EventArgs e)
-        {
-            Difficulty = 15;
+            Difficulty = 20;
             Start_btn.FlatAppearance.MouseOverBackColor = Color.LightGreen;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Green;
         }
 
-        private void med_rad_btn_CheckedChanged(object sender, EventArgs e)
+        private void Med_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            Difficulty = 25;
+            Difficulty = 40;
             Start_btn.FlatAppearance.MouseOverBackColor = Color.DeepSkyBlue;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Blue;
         }
 
-        private void hard_rad_btn_CheckedChanged(object sender, EventArgs e)
+        private void Hard_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            Difficulty = 30;
+            Difficulty = 60;
             Start_btn.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Red;
         }
@@ -60,7 +59,7 @@ namespace DealWithExcel
             ar_radioButton.Checked = true;
         }
 
-        private void en_radioButton_CheckedChanged(object sender, EventArgs e)
+        private void En_radioButton_CheckedChanged(object sender, EventArgs e)
         {
             language = "english";
             lang_groupBox.Text = "Coose Language:";
@@ -69,27 +68,27 @@ namespace DealWithExcel
             lang_groupBox.RightToLeft = RightToLeft.No;
             ar_radioButton.RightToLeft = RightToLeft.No;
             en_radioButton.RightToLeft = RightToLeft.No;
-            ar_pictureBox.Location=new Point(100, 30);
-            en_pictureBox.Location=new Point(120, 65);
+            ar_pictureBox.Location = new Point(100, 30);
+            en_pictureBox.Location = new Point(120, 65);
             easy_rad_btn.Text = "Easy";
             med_rad_btn.Text = "Medium";
             hard_rad_btn.Text = "Hard";
             easy_rad_btn.RightToLeft = RightToLeft.No;
             med_rad_btn.RightToLeft = RightToLeft.No;
             hard_rad_btn.RightToLeft = RightToLeft.No;
-            easy_rad_btn.Location= new Point(67, 50);
-            med_rad_btn.Location= new Point(185, 50);
-            hard_rad_btn.Location= new Point(344, 50);
+            easy_rad_btn.Location = new Point(67, 50);
+            med_rad_btn.Location = new Point(185, 50);
+            hard_rad_btn.Location = new Point(344, 50);
             difficulty_groupBox.RightToLeft = RightToLeft.No;
         }
 
-        private void ar_radioButton_CheckedChanged(object sender, EventArgs e)
+        private void Ar_radioButton_CheckedChanged(object sender, EventArgs e)
         {
             language = "arabic";
             lang_groupBox.Text = "اختر اللغة:";
-            lang_groupBox.RightToLeft= RightToLeft.Yes;
-            ar_radioButton.RightToLeft= RightToLeft.Yes;
-            en_radioButton.RightToLeft= RightToLeft.Yes;
+            lang_groupBox.RightToLeft = RightToLeft.Yes;
+            ar_radioButton.RightToLeft = RightToLeft.Yes;
+            en_radioButton.RightToLeft = RightToLeft.Yes;
             ar_pictureBox.Location = new Point(24, 30);
             en_pictureBox.Location = new Point(14, 65);
             Start_btn.Text = "ابدأ";
@@ -106,7 +105,7 @@ namespace DealWithExcel
             difficulty_groupBox.RightToLeft = RightToLeft.Yes;
         }
 
-        
+
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -128,7 +127,7 @@ namespace DealWithExcel
             }
             if (result == DialogResult.Yes)
             {
-               Application.Exit();
+                Application.Exit();
             }
         }
     }

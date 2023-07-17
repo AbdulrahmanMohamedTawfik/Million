@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="من سيربح المليون جنيه.exe" size="14593496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="من سيربح المليون جنيه.exe" size="19998168">
       <assemblyIdentity name="من سيربح المليون جنيه" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jjgu2VeVG7tF3gc4gHwW+tFzpVivxR8vRS4cB8pm5vg=</dsig:DigestValue>
+        <dsig:DigestValue>PbuMkgNPDqDAn9fcEvEC8O32W2+It4//HzTXbIeZvoY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
