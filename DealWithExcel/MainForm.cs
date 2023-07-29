@@ -9,25 +9,86 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+using System.Media;
+using ExcelDataReader;
+using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Remoting.Messaging;
 
-namespace DealWithExcel
+namespace MillionLE
 {
     public partial class MainForm : Form
     {
         private int Difficulty;
         public string language;
+        SoundPlayer player;
+        readonly HelperClass helper;
+        private static readonly string EnglishfilePath = "Data\\EnglishData.xlsx", ArabicfilePath = "Data\\ArabicData.xlsx";
+        Stream stream;
+        IExcelDataReader reader;
+
         public MainForm()
         {
             InitializeComponent();
+            progressBar1.Hide();
+            helper = new HelperClass
+            {
+                IsSoundOn = true
+            };
         }
 
-        private void Start_btn_Click(object sender, EventArgs e)
+        private async void Start_btn_Click(object sender, EventArgs e)
         {
-            bool isForm1Open = Application.OpenForms.OfType<GameForm>().Any();
-            if (isForm1Open)
+            progressBar1.Show();
+            for (int i = 0; i < 3; i++)//30
+            {
+                progressBar1.PerformStep();
+                await Task.Delay(100);
+            }
+            bool isFormOpen = Application.OpenForms.OfType<GameForm>().Any();
+            if (isFormOpen)
                 Hide();
-            GameForm f = new GameForm(language, Difficulty);
+            if (language == "arabic")
+            {
+                stream = File.Open(ArabicfilePath, FileMode.Open, FileAccess.Read);
+                for (int i = 0; i < 3; i++)//60
+                {
+                    progressBar1.PerformStep();
+                    await Task.Delay(100);
+                }
+                reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
+                for (int i = 0; i < 3; i++)//90
+                {
+                    progressBar1.PerformStep();
+                    await Task.Delay(100);
+                }
+            }
+            else if (language == "english")
+            {
+                stream = File.Open(EnglishfilePath, FileMode.Open, FileAccess.Read);
+                for (int i = 0; i < 3; i++)//60
+                {
+                    progressBar1.PerformStep();
+                    await Task.Delay(100);
+                }
+                reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
+                for (int i = 0; i < 3; i++)//90
+                {
+                    progressBar1.PerformStep();
+                    await Task.Delay(100);
+                }
+            }
+            GameForm f = new GameForm(reader, language, helper, Difficulty);
+            progressBar1.PerformStep();
             f.ShowDialog();
+            //back to main again
+            stream.Close();
+            progressBar1.Value = 0;
+            progressBar1.Hide();
+            if (helper.IsSoundOn)
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+            else
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
             Show();
         }
         //75 Arabic question
@@ -57,6 +118,10 @@ namespace DealWithExcel
         {
             easy_rad_btn.Checked = true;
             ar_radioButton.Checked = true;
+            IntroForm introForm = new IntroForm();
+            introForm.ShowDialog();
+            player = new SoundPlayer(Properties.Resources.intro);
+            player.Play();
         }
 
         private void En_radioButton_CheckedChanged(object sender, EventArgs e)
@@ -130,5 +195,33 @@ namespace DealWithExcel
                 Application.Exit();
             }
         }
+
+        private void Sound_btn_Click(object sender, EventArgs e)
+        {
+            // Toggle the state
+            helper.IsSoundOn = !helper.IsSoundOn;
+
+            // Set the button's background image based on the state
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                if (player != null && player.IsLoadCompleted)
+                    player.Play();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+                if (player != null && player.IsLoadCompleted)
+                    player.Stop();
+            }
+        }
+
+        private void Intro_btn_Click(object sender, EventArgs e)
+        {
+            player.Stop();
+            IntroForm introForm = new IntroForm();
+            introForm.ShowDialog();
+        }
+
     }
 }

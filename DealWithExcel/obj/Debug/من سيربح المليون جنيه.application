@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="من سيربح المليون جنيه.exe.manifest" size="7008">
+    <dependentAssembly dependencyType="install" codebase="من سيربح المليون جنيه.exe.manifest" size="8305">
       <assemblyIdentity name="من سيربح المليون جنيه.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>KQiXHIn5Whu7IugFGj6UE+2CqwNmYOLeE3zmbZ+BVwE=</dsig:DigestValue>
+        <dsig:DigestValue>AFIuzY1uugMsyO/5fIc4bBcMMCjNnY6FUWRBDCipOkQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

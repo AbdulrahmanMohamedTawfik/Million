@@ -1,0 +1,35 @@
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\من سيربح المليون جنيه.exe.config
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\من سيربح المليون جنيه.exe.manifest
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\من سيربح المليون جنيه.application
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\من سيربح المليون جنيه.exe
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\من سيربح المليون جنيه.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.DataSet.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.xml
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.DataSet.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\ExcelDataReader.DataSet.xml
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\Interop.WMPLib.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\bin\Release\AxInterop.WMPLib.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.AssemblyReference.cache
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.SuggestedBindingRedirects.cache
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\Interop.AXVLC.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\Interop.WMPLib.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\AxInterop.WMPLib.dll
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.ResolveComReference.cache
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.EndForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.GameForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.IntroForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.ShowDataForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.MainForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.Properties.Resources.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.ResultForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.GenerateResource.cache
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.CoreCompileInputs.cache
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.TrustInfo.xml
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.exe.manifest
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.application
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.csproj.CopyComplete
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.exe
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من سيربح المليون جنيه.pdb
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.CallFriendForm.resources

@@ -1,4 +1,4 @@
-﻿namespace DealWithExcel
+﻿namespace MillionLE
 {
     partial class MainForm
     {
@@ -40,6 +40,9 @@
             this.ar_radioButton = new System.Windows.Forms.RadioButton();
             this.en_radioButton = new System.Windows.Forms.RadioButton();
             this.Exit_btn = new System.Windows.Forms.Button();
+            this.Sound_btn = new System.Windows.Forms.Button();
+            this.Intro_btn = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.difficulty_groupBox.SuspendLayout();
             this.lang_groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ar_pictureBox)).BeginInit();
@@ -58,7 +61,7 @@
             this.Start_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Start_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Start_btn.ForeColor = System.Drawing.Color.Transparent;
-            this.Start_btn.Location = new System.Drawing.Point(392, 276);
+            this.Start_btn.Location = new System.Drawing.Point(392, 284);
             this.Start_btn.Name = "Start_btn";
             this.Start_btn.Size = new System.Drawing.Size(196, 67);
             this.Start_btn.TabIndex = 0;
@@ -116,7 +119,7 @@
             this.difficulty_groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.difficulty_groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.difficulty_groupBox.ForeColor = System.Drawing.Color.White;
-            this.difficulty_groupBox.Location = new System.Drawing.Point(207, 97);
+            this.difficulty_groupBox.Location = new System.Drawing.Point(207, 105);
             this.difficulty_groupBox.Name = "difficulty_groupBox";
             this.difficulty_groupBox.Size = new System.Drawing.Size(636, 164);
             this.difficulty_groupBox.TabIndex = 4;
@@ -133,7 +136,7 @@
             this.lang_groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lang_groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lang_groupBox.ForeColor = System.Drawing.Color.White;
-            this.lang_groupBox.Location = new System.Drawing.Point(363, 402);
+            this.lang_groupBox.Location = new System.Drawing.Point(363, 410);
             this.lang_groupBox.Name = "lang_groupBox";
             this.lang_groupBox.Size = new System.Drawing.Size(255, 127);
             this.lang_groupBox.TabIndex = 7;
@@ -199,10 +202,52 @@
             this.Exit_btn.ForeColor = System.Drawing.Color.Transparent;
             this.Exit_btn.Location = new System.Drawing.Point(12, 12);
             this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(66, 46);
+            this.Exit_btn.Size = new System.Drawing.Size(58, 46);
             this.Exit_btn.TabIndex = 8;
             this.Exit_btn.UseVisualStyleBackColor = false;
             this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
+            // 
+            // Sound_btn
+            // 
+            this.Sound_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Sound_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Sound_btn.BackgroundImage")));
+            this.Sound_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Sound_btn.FlatAppearance.BorderSize = 0;
+            this.Sound_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
+            this.Sound_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Sound_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sound_btn.ForeColor = System.Drawing.Color.Transparent;
+            this.Sound_btn.Location = new System.Drawing.Point(92, 12);
+            this.Sound_btn.Name = "Sound_btn";
+            this.Sound_btn.Size = new System.Drawing.Size(58, 46);
+            this.Sound_btn.TabIndex = 34;
+            this.Sound_btn.Tag = "";
+            this.Sound_btn.UseVisualStyleBackColor = false;
+            this.Sound_btn.Click += new System.EventHandler(this.Sound_btn_Click);
+            // 
+            // Intro_btn
+            // 
+            this.Intro_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Intro_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Intro_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Intro_btn.ForeColor = System.Drawing.Color.White;
+            this.Intro_btn.Location = new System.Drawing.Point(12, 548);
+            this.Intro_btn.Name = "Intro_btn";
+            this.Intro_btn.Size = new System.Drawing.Size(109, 34);
+            this.Intro_btn.TabIndex = 35;
+            this.Intro_btn.Text = "intro";
+            this.Intro_btn.UseVisualStyleBackColor = false;
+            this.Intro_btn.Click += new System.EventHandler(this.Intro_btn_Click);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.progressBar1.ForeColor = System.Drawing.Color.White;
+            this.progressBar1.Location = new System.Drawing.Point(392, 357);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(196, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 36;
             // 
             // MainForm
             // 
@@ -211,7 +256,10 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(967, 579);
+            this.ClientSize = new System.Drawing.Size(967, 594);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.Intro_btn);
+            this.Controls.Add(this.Sound_btn);
             this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.lang_groupBox);
             this.Controls.Add(this.difficulty_groupBox);
@@ -246,5 +294,8 @@
         private System.Windows.Forms.RadioButton en_radioButton;
         private System.Windows.Forms.PictureBox ar_pictureBox;
         private System.Windows.Forms.Button Exit_btn;
+        private System.Windows.Forms.Button Sound_btn;
+        private System.Windows.Forms.Button Intro_btn;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

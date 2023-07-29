@@ -1,4 +1,4 @@
-﻿namespace DealWithExcel
+﻿namespace MillionLE
 {
     partial class ResultForm
     {
@@ -38,6 +38,7 @@
             this.fireworks_pictureBox1 = new System.Windows.Forms.PictureBox();
             this.fireworks_pictureBox4 = new System.Windows.Forms.PictureBox();
             this.fireworks_pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Sound_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fireworks_pictureBox1)).BeginInit();
@@ -58,14 +59,14 @@
             this.Result_txt.TabIndex = 4;
             this.Result_txt.Text = "Result";
             // 
-            // OK_btn
+            // Exit_btn
             // 
             this.Exit_btn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Exit_btn.BackColor = System.Drawing.Color.Transparent;
             this.Exit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Exit_btn.ForeColor = System.Drawing.Color.White;
             this.Exit_btn.Location = new System.Drawing.Point(255, 353);
-            this.Exit_btn.Name = "OK_btn";
+            this.Exit_btn.Name = "Exit_btn";
             this.Exit_btn.Size = new System.Drawing.Size(109, 34);
             this.Exit_btn.TabIndex = 5;
             this.Exit_btn.Text = "Exit";
@@ -167,6 +168,24 @@
             this.fireworks_pictureBox3.TabIndex = 14;
             this.fireworks_pictureBox3.TabStop = false;
             // 
+            // Sound_btn
+            // 
+            this.Sound_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Sound_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Sound_btn.BackgroundImage")));
+            this.Sound_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Sound_btn.FlatAppearance.BorderSize = 0;
+            this.Sound_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.Sound_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
+            this.Sound_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Sound_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sound_btn.ForeColor = System.Drawing.Color.Transparent;
+            this.Sound_btn.Location = new System.Drawing.Point(580, 20);
+            this.Sound_btn.Name = "Sound_btn";
+            this.Sound_btn.Size = new System.Drawing.Size(58, 46);
+            this.Sound_btn.TabIndex = 34;
+            this.Sound_btn.UseVisualStyleBackColor = false;
+            this.Sound_btn.Click += new System.EventHandler(this.Sound_btn_Click);
+            // 
             // ResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -176,6 +195,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.Sound_btn);
             this.Controls.Add(this.fireworks_pictureBox3);
             this.Controls.Add(this.fireworks_pictureBox4);
             this.Controls.Add(this.fireworks_pictureBox1);
@@ -211,5 +231,6 @@
         private System.Windows.Forms.PictureBox fireworks_pictureBox1;
         private System.Windows.Forms.PictureBox fireworks_pictureBox4;
         private System.Windows.Forms.PictureBox fireworks_pictureBox3;
+        private System.Windows.Forms.Button Sound_btn;
     }
 }

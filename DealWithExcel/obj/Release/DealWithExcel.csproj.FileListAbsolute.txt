@@ -25,3 +25,11 @@ C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\من �
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.GameForm.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.ShowDataForm.resources
 C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.EndForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\DealWithExcel.TempForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.EndForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.GameForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.ShowDataForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.MainForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.Properties.Resources.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.ResultForm.resources
+C:\Users\Abdulrahman\source\repos\DealWithExcel\DealWithExcel\obj\Release\MillionLE.TempForm.resources

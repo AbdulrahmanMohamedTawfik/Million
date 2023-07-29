@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0419655C-AE08-4117-8C11-F90A2A3BE738}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MillionLE</RootNamespace>
+    <AssemblyName>من سيربح المليون جنيه</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Abdulrahman\Desktop\من سيربح المليو\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>من سيربح المليون</ProductName>
+    <PublisherName>Abdulrahman Mohamed Tawfik</PublisherName>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>unnamed.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2706FF614AF3FCF1459C79F7970BE3BC851C4DB6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DealWithExcel_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CallFriendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CallFriendForm.Designer.cs">
+      <DependentUpon>CallFriendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EndForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EndForm.Designer.cs">
+      <DependentUpon>EndForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameForm.Designer.cs">
+      <DependentUpon>GameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass.cs" />
+    <Compile Include="IntroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntroForm.Designer.cs">
+      <DependentUpon>IntroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowDataForm.Designer.cs">
+      <DependentUpon>ShowDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultForm.Designer.cs">
+      <DependentUpon>ResultForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CallFriendForm.resx">
+      <DependentUpon>CallFriendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EndForm.resx">
+      <DependentUpon>EndForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameForm.resx">
+      <DependentUpon>GameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntroForm.resx">
+      <DependentUpon>IntroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowDataForm.resx">
+      <DependentUpon>ShowDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ResultForm.resx">
+      <DependentUpon>ResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DealWithExcel_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Audio\200.mp3" />
+    <None Include="bin\Debug\Audio\300-next-500.mp3" />
+    <None Include="bin\Debug\Audio\500-next-1000.mp3" />
+    <None Include="bin\Debug\Audio\1000.mp3" />
+    <None Include="bin\Debug\Audio\2000-next-4000.mp3" />
+    <None Include="bin\Debug\Audio\4000-next-8000.mp3" />
+    <None Include="bin\Debug\Audio\8000-next-16000.mp3" />
+    <None Include="bin\Debug\Audio\16000-next-32000.mp3" />
+    <None Include="bin\Debug\Audio\32000-next-64000.mp3" />
+    <None Include="bin\Debug\Audio\64000-next-125000.mp3" />
+    <None Include="bin\Debug\Audio\125000-next-250000.mp3" />
+    <None Include="bin\Debug\Audio\250000-next-500000.mp3" />
+    <None Include="bin\Debug\Audio\500000-next-1000000.mp3" />
+    <None Include="bin\Debug\Audio\1000000.mp3" />
+    <None Include="bin\Debug\Audio\call-friend-30sec-counter.mp3" />
+    <None Include="bin\Debug\Audio\intro.mp3" />
+    <None Include="bin\Debug\Audio\people-opinion.mp3" />
+    <None Include="bin\Debug\Audio\thinking.mp3" />
+    <None Include="bin\Debug\Audio\100.mp3" />
+    <None Include="bin\Debug\Audio\WAV\1000.wav" />
+    <None Include="bin\Debug\Audio\WAV\2000-next-4000.wav" />
+    <None Include="bin\Debug\Audio\WAV\4000-next-8000.wav" />
+    <None Include="bin\Debug\Audio\WAV\8000-next-16000.wav" />
+    <None Include="bin\Debug\Audio\WAV\16000-next-32000.wav" />
+    <None Include="bin\Debug\Audio\WAV\32000-next-64000.wav" />
+    <None Include="bin\Debug\Audio\WAV\64000-next-125000.wav" />
+    <None Include="bin\Debug\Audio\WAV\125000-next-250000.wav" />
+    <None Include="bin\Debug\Audio\WAV\250000-next-500000.wav" />
+    <None Include="bin\Debug\Audio\WAV\500000-next-1000000.wav" />
+    <None Include="bin\Debug\Audio\WAV\1000000.wav" />
+    <None Include="bin\Debug\Audio\WAV\call-friend-30sec-counter.wav" />
+    <None Include="bin\Debug\Audio\WAV\intro.wav" />
+    <None Include="bin\Debug\Audio\WAV\people-opinion.wav" />
+    <None Include="bin\Debug\Audio\WAV\thinking.wav" />
+    <None Include="bin\Debug\Audio\WAV\100.wav" />
+    <None Include="bin\Debug\Audio\WAV\200.wav" />
+    <None Include="bin\Debug\Audio\WAV\300-next-500.wav" />
+    <None Include="bin\Debug\Audio\WAV\500-next-1000.wav" />
+    <None Include="bin\Release\Audio\wrong-answer.wav" />
+    <None Include="bin\Release\Audio\End.wav" />
+    <None Include="bin\Debug\Audio\clap.wav" />
+    <None Include="bin\Debug\Audio\32000-next-64000.wav" />
+    <None Include="bin\Debug\Audio\250000-next-500000.wav" />
+    <None Include="bin\Debug\Audio\4000-next-8000.wav" />
+    <None Include="bin\Debug\Audio\8000-next-16000.wav" />
+    <None Include="bin\Debug\Audio\16000-next-32000.wav" />
+    <None Include="bin\Debug\Audio\64000-next-125000.wav" />
+    <None Include="bin\Debug\Audio\125000-next-250000.wav" />
+    <None Include="bin\Debug\Audio\2000-next-4000.wav" />
+    <None Include="bin\Debug\Audio\500-next-1000.wav" />
+    <None Include="bin\Debug\Audio\wrong-answer.wav" />
+    <None Include="bin\Debug\Audio\End.wav" />
+    <None Include="bin\Debug\Audio\help_50_50.wav" />
+    <None Include="bin\Debug\Audio\people-opinion.wav" />
+    <None Include="bin\Debug\Audio\Countdown-10-seconds.wav" />
+    <None Include="bin\Debug\Audio\Countdown-10-second.wav" />
+    <None Include="bin\Debug\Audio\CORRECT_ANSWER.wav" />
+    <Content Include="game_icon.ico" />
+    <None Include="Resources\sound_on.png" />
+    <None Include="Resources\sound_off.png" />
+    <None Include="Resources\1-ans3.jpg" />
+    <None Include="Resources\2-ans2.jpg" />
+    <None Include="Resources\3-ans2.jpg" />
+    <None Include="Resources\4-ans1.jpg" />
+    <None Include="Resources\5-ans1.jpg" />
+    <None Include="Resources\7-ans1.jpg" />
+    <None Include="Resources\0-ans1.jpg" />
+    <None Include="Resources\6-ans3.jpg" />
+    <Content Include="unnamed.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

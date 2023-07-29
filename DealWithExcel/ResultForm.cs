@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Media;
 using System.Windows.Forms;
 
-namespace DealWithExcel
+namespace MillionLE
 {
     public partial class ResultForm : Form
     {
         private readonly int receivedmoney, receivedScore, received_num_of_questions, received_diffculty;
         private readonly string language;
-        public ResultForm(string lang, int money, int score, int num_of_questions, int DifficultyValue)
+        SoundPlayer player;
+        readonly HelperClass helper;
+
+        public ResultForm(string lang, HelperClass helper, int money, int score, int num_of_questions, int DifficultyValue)
         {
             InitializeComponent();
             receivedScore = score;
@@ -15,6 +19,18 @@ namespace DealWithExcel
             language = lang;
             receivedmoney = money;
             received_diffculty = DifficultyValue;
+            this.helper = helper;
+            //sync sound with Game form
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.clap);
+                player.Play();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+            }
         }
 
         private void ResultForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -30,10 +46,29 @@ namespace DealWithExcel
             e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
         }
 
+        private void Sound_btn_Click(object sender, EventArgs e)
+        {
+            // Toggle the state
+            helper.IsSoundOn = !helper.IsSoundOn;
+
+            // Set the button's background image based on the state
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.clap);
+                player.PlayLooping();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+                player.Stop();
+            }
+        }
+
         private void Exit_btn_Click(object sender, EventArgs e)
         {
             Close();
-            EndForm endForm = new EndForm(language);
+            EndForm endForm = new EndForm(language, helper);
             endForm.ShowDialog();
         }
 

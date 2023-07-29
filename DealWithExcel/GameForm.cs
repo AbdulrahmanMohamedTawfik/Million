@@ -7,35 +7,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelDataReader;
+using System.Media;
+using System.Windows.Forms.DataVisualization.Charting;
 
-namespace DealWithExcel
+namespace MillionLE
 {
     public partial class GameForm : Form
     {
         private readonly int Difficulty;
         private readonly string language;
         private System.Windows.Forms.Timer timer;
-        private static readonly string EnglishfilePath = "Data\\EnglishData.xlsx", ArabicfilePath = "Data\\ArabicData.xlsx";
         private string correct_answer;
-        Stream stream;
-        IExcelDataReader reader;
+
         DataSet dataSet;
         public int money_index = 0, choice1, choice2, choice3, choice4;
-        readonly int[] money = { 0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250_000, 500_000, 1000_0000 };
+        readonly int[] money = { 0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1000_0000 };
         private static int row = 0, help50_used = 0, deleted_chice1, deleted_chice2;
         private static readonly int num_of_questions = 15;
         static readonly List<int> row_values = new List<int>();
         readonly Random random = new Random();
+        SoundPlayer player;
+        readonly HelperClass helper;
+        IExcelDataReader reader;
 
-        public GameForm(string lang, int DifficultyValue = 15)
+        public GameForm(IExcelDataReader reader, string lang, HelperClass helper, int DifficultyValue = 15)
         {
             InitializeComponent();
+            this.reader = reader;
             Difficulty = DifficultyValue;
             language = lang;
+            this.helper = helper;
+            //reset call friend result
+            helper.IsCorrect = false;
+            //sync sound with main form
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.PlayLooping();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+            }
+            //zoom once
+            this.Scale(new SizeF(1.2f, 1.2f));
+            //MoveControlsUpAndLeft();
+            //hide some controls
             x_50_50_btn.Hide();
             x_people_help_btn.Hide();
             x_help_call_btn.Hide();
-
+            X_Help_Show_All_btn.Hide();
             money_label.Hide();
             money_panel20.Hide();
             money_panel40.Hide();
@@ -43,10 +65,18 @@ namespace DealWithExcel
             money_panel60.Hide();
             money_panel80.Hide();
             people_chart.Hide();
+            Count10pictureBox.Hide();
+            //Count10pictureBox.Enabled = false;
+            //tooltip
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(Help_Show_All_btn, "Show all questions for 10sec");
+            //manage language direction
             if (language == "arabic")
             {
                 SwapButtonLocations(choice1a_btn, choice2b_btn);
                 SwapButtonLocations(choice3c_btn, choice4d_btn);
+                //tooltip
+                toolTip.SetToolTip(Help_Show_All_btn, "رؤية كل الأسئلة لمدة 10ث");
             }
             help50_used = 0;
             Loading();
@@ -70,11 +100,10 @@ namespace DealWithExcel
                 choice3c_btn.RightToLeft = RightToLeft.Yes;
                 choice4d_btn.RightToLeft = RightToLeft.Yes;
                 money_values_panel.RightToLeft = RightToLeft.Yes;
-                Show_All_btn.Text = "رؤية كل الاسئلة";
+                //Help_Show_All_btn. = "رؤية كل الاسئلة";
                 withdraw_btn.Text = "انسحاب";
                 //read data
-                stream = File.Open(ArabicfilePath, FileMode.Open, FileAccess.Read);
-                reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
+
                 dataSet = reader.AsDataSet();
                 //generate QA text
                 Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
@@ -93,11 +122,9 @@ namespace DealWithExcel
                 choice3c_btn.RightToLeft = RightToLeft.No;
                 choice4d_btn.RightToLeft = RightToLeft.No;
                 money_values_panel.RightToLeft = RightToLeft.No;
-                Show_All_btn.Text = "Show All Questions";
+                //Help_Show_All_btn.Text = "Show All Questions";
                 withdraw_btn.Text = "Withdraw";
                 //read data
-                stream = File.Open(EnglishfilePath, FileMode.Open, FileAccess.Read);
-                reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
                 dataSet = reader.AsDataSet();
                 //generate QA text
                 Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
@@ -111,29 +138,7 @@ namespace DealWithExcel
             Change_money_Color(money_index);
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            stream.Close();
-        }
 
-        private void Show_All_btn_Click(object sender, EventArgs e)
-        {
-            if (Application.OpenForms["ShowDataForm"] == null)//if not opened => open
-            {
-                if (Difficulty != 60)
-                {
-                    this.Enabled = false;
-                    ShowDataForm form2 = new ShowDataForm(language);
-                    form2.Show();
-                    this.Enabled = true;
-                }
-            }
-            else//already opened => focus
-            {
-                ShowDataForm dataForm = (ShowDataForm)Application.OpenForms["ShowDataForm"];
-                dataForm.Focus();
-            }
-        }
         //the correct choice is always in column1 but choices is distributed randomly on buttons
         //so we check if choice_btn.text == column1.text
         private void Choice1a_btn_Click(object sender, EventArgs e)
@@ -216,13 +221,48 @@ namespace DealWithExcel
             Cursor = Cursors.Default;
         }
 
+        private async void Help_Show_All_btn_Click(object sender, EventArgs e)
+        {
+
+            if (money_index >= 0)
+            {
+                X_Help_Show_All_btn.Show();
+                Help_Show_All_btn.Hide();
+                this.Enabled = false;
+                ShowDataForm form2 = new ShowDataForm(language);
+                form2.Show();
+                this.Enabled = true;
+                Count10pictureBox.Show();
+                if (helper.IsSoundOn)
+                {
+                    player = new SoundPlayer(Properties.Resources.Countdown_10_seconds);
+                    player.Play();
+                }
+                await Task.Delay(11000); // Wait for 11 seconds
+                Count10pictureBox.Hide();
+                form2.Close();
+            }
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.Play();
+            }
+        }
+
         private async void Help_50_50_btn_Click(object sender, EventArgs e)
         {
+            help_50_50_btn.Hide();
+            x_50_50_btn.Show();
             int del1 = 0, del2 = 0;
             help_50_50_btn.BackColor = Color.DarkOrange;
             Cursor = Cursors.No;
             this.Enabled = false;
-            await Task.Delay(2000); // Wait for 2 seconds
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.help_50_50);
+                player.Play();
+            }
+            await Task.Delay(8500); // Wait for 9 seconds
             Cursor = Cursors.Default;
             help_50_50_btn.BackColor = Color.Transparent;
             if (correct_answer == choice1a_btn.Text.Substring(2))//1st buttton is correct => delete any other 2 buttons from rest(2,3,4)
@@ -265,16 +305,66 @@ namespace DealWithExcel
                 } while (del2 == del1);
                 Delete_two_choices(del1, del2);
             }
-            help_50_50_btn.Hide();
-            x_50_50_btn.Show();
             help50_used = 1;
             deleted_chice1 = del1;
             deleted_chice2 = del2;
             this.Enabled = true;
+
+            await Task.Delay(1500);
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.Play();
+            }
         }
 
-        private async void people_help_btn_Click(object sender, EventArgs e)
+        private void UpdateChartSeriesData()
         {
+            // Clear the existing data points
+
+            var xAxis = people_chart.ChartAreas[0].AxisX;
+            if (language == "arabic")
+            {
+                xAxis.CustomLabels.Add(0.5, 1.5, "أ");
+                xAxis.CustomLabels.Add(1.5, 2.5, "ب");
+                xAxis.CustomLabels.Add(2.5, 3.5, "ج");
+                xAxis.CustomLabels.Add(3.5, 4.5, "د");
+                people_chart.RightToLeft = RightToLeft.Yes;
+                //add votes data to chart
+                people_chart.Series.Clear();
+                people_chart.Series.Add("الاصوات");
+                // Generate random values for the chart series
+                for (int i = 0; i < 4; i++)
+                {
+                    int randomValue = random.Next(100);
+                    people_chart.Series["الاصوات"].Points.AddXY(i + 1, randomValue);
+                }
+            }
+            else if (language == "english")
+            {
+                xAxis.CustomLabels.Add(0.5, 1.5, "a");
+                xAxis.CustomLabels.Add(1.5, 2.5, "b");
+                xAxis.CustomLabels.Add(2.5, 3.5, "c");
+                xAxis.CustomLabels.Add(3.5, 4.5, "d");
+                people_chart.RightToLeft = RightToLeft.No;
+                //add votes data to chart
+                people_chart.Series.Clear();
+                people_chart.Series.Add("Votes");
+                // Generate random values for the chart series
+                for (int i = 0; i < 4; i++)
+                {
+                    int randomValue = random.Next(100);
+                    people_chart.Series["Votes"].Points.AddXY(i + 1, randomValue);
+                }
+            }
+            // Refresh the chart to reflect the changes
+            people_chart.Invalidate();
+        }
+
+        private async void People_help_btn_Click(object sender, EventArgs e)
+        {
+            people_help_btn.Hide();
+            x_people_help_btn.Show();
             int[] votes = GenerateRandomVotesWithSomeReliability();
 
             //adjust some chart properties
@@ -282,6 +372,24 @@ namespace DealWithExcel
             xAxis.Maximum = 4.5;
             xAxis.CustomLabels.Clear();
             int i = 0;
+            people_help_btn.BackColor = Color.DarkOrange;
+            Cursor = Cursors.No;
+            this.Enabled = false;
+            Cursor = Cursors.Default;
+            people_help_btn.BackColor = Color.Transparent;
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.people_opinion);
+                player.Play();
+            }
+            await Task.Delay(7500); // Wait for 7.5 seconds
+
+            people_chart.Show();
+            for (int j = 0; j < 20; j++)
+            {
+                UpdateChartSeriesData();
+                await Task.Delay(500); // Wait for 1 seconds
+            }
             if (language == "arabic")
             {
                 xAxis.CustomLabels.Add(0.5, 1.5, "أ");
@@ -318,26 +426,46 @@ namespace DealWithExcel
                     i++;
                 }
             }
-
-
-            people_help_btn.BackColor = Color.DarkOrange;
-            Cursor = Cursors.No;
-            this.Enabled = false;
-            await Task.Delay(2000); // Wait for 2 seconds
-            Cursor = Cursors.Default;
-            people_help_btn.BackColor = Color.Transparent;
-            //help is used
-            people_help_btn.Hide();
-            x_people_help_btn.Show();
-            people_chart.Show();
             this.Enabled = true;
+            await Task.Delay(1500);
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.Play();
+            }
         }
 
-        private void Help_Call_btn_Click(object sender, EventArgs e)
+        private async void Help_Call_Friend_btn_Click(object sender, EventArgs e)
         {
             //not added yet
             help_call_btn.Hide();
             x_help_call_btn.Show();
+            //...code...
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.call_friend_30sec_counter);
+                player.Play();
+            }
+            this.Enabled = false;
+            await Task.Delay(5000);
+            CallFriendForm callFriendForm = new CallFriendForm(helper);
+            Hide();
+            callFriendForm.ShowDialog();
+            Show();
+            this.Enabled = true;
+            if (helper.IsCorrect)//answered correctly
+            {
+                label17.Text = "correct";
+            }
+            else
+            {
+                label17.Text = "not correct";
+            }
+            if (helper.IsSoundOn && player.SoundLocation == null)
+            {
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.Play();
+            }
         }
 
         private void Withdraw_btn_Click(object sender, EventArgs e)
@@ -353,10 +481,9 @@ namespace DealWithExcel
             }
             if (result == DialogResult.Yes)
             {
-                ResultForm resultForm = new ResultForm(language, money[money_index], money_index, num_of_questions, Difficulty);
+                ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
                 resultForm.ShowDialog();
                 money_index = 0;
-                stream.Close();
                 Close();
             }
         }
@@ -365,12 +492,12 @@ namespace DealWithExcel
         {
             timer.Stop();
             Close();
-            ResultForm resultForm = new ResultForm(language, money[money_index], money_index, num_of_questions, Difficulty);
+            ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
             money_index = 0;
             resultForm.ShowDialog();
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void GaneForm_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
@@ -416,10 +543,139 @@ namespace DealWithExcel
                 Close();
         }
 
+        private void Sound_btn_Click(object sender, EventArgs e)
+        {
+            // Toggle the state
+            helper.IsSoundOn = !helper.IsSoundOn;
+
+            // Set the button's background image based on the state
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.PlayLooping();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+                player.Stop();
+            }
+        }
+
+        private void Zoom_in_btn_Click(object sender, EventArgs e)
+        {
+            this.Scale(new SizeF(1.1f, 1.1f));
+            //label17.Text = this.Size.ToString();
+            DialogResult result1 = DialogResult.No;
+
+            //handle language
+            if (language == "arabic")
+                result1 = MessageBox.Show("حجم الشاشة مع اللعبة مظبوط؟", "ايه رأيك؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            else if (language == "english")
+                result1 = MessageBox.Show("The game fits the screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //do nothing if 'yes' choosed
+            if (result1 == DialogResult.No)
+            {
+                this.Scale(new SizeF(0.9f,0.9f));//(1.0f / 1.1f, 1.0f / 1.1f));//(1.0f + (1.0f - 1.1f), 1.0f + (1.0f - 1.1f)));//
+                //label17.Text = this.Size.ToString();
+            }
+        }
+
+        private void Zoom_out_btn_Click(object sender, EventArgs e)
+        {
+            this.Scale(new SizeF(0.9f, 0.9f));
+
+            DialogResult result1 = DialogResult.No;
+
+            //handle language
+            if (language == "arabic")
+                result1 = MessageBox.Show("حجم الشاشة مع اللعبة مظبوط؟", "ايه رأيك؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            else if (language == "english")
+                result1 = MessageBox.Show("The game fits the screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //do nothing if 'yes' choosed
+            if (result1 == DialogResult.No)
+                this.Scale(new SizeF(1.1f, 1.1f));
+
+        }
+
+        //private void MoveControlsUpAndLeft()
+        //{
+        //    foreach (Control control in Controls)
+        //    {
+        //        Point newLocation = new Point(control.Location.X - 150, control.Location.Y - 70);
+        //        //Point newLocation = new Point(0, 0);
+        //        control.Location = newLocation;
+        //    }
+        //}
+        //private void MoveControlsDownAndRight()
+        //{
+        //    foreach (Control control in Controls)
+        //    {
+        //        Point newLocation = new Point(control.Location.X + 150, control.Location.Y + 70);
+        //        control.Location = newLocation;
+        //    }
+        //}
+
+        private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            money_index = 0;
+            if (helper.IsSoundOn)
+                player.Stop();
+        }
+
         private async void Change_Question()
         {
-            //add some suspense
-            await Task.Delay(2000 + money_index * 100); // Wait for 2 seconds + question_num * 100 (2,2.1,2.2,2.3,2.4,...,3.4)sec
+            //add some suspense(wait before change the question)
+            switch (money_index)
+            {
+                case 0:
+                    await Task.Delay(2000); // Wait for 2 seconds
+                    break;
+                case 1:
+                    await Task.Delay(6000); // Wait for 6 seconds
+                    break;
+                case 2:
+                    await Task.Delay(6000); // Wait for 6 seconds
+                    break;
+                case 3:
+                    await Task.Delay(11000); // Wait for 11 seconds
+                    break;
+                case 4:
+                    await Task.Delay(13000); // Wait for 13 seconds
+                    break;
+                case 5:
+                    await Task.Delay(10000); // Wait for 10 seconds
+                    break;
+                case 6:
+                    await Task.Delay(13000); // Wait for 13 seconds
+                    break;
+                case 7:
+                    await Task.Delay(15000); // Wait for 15 seconds
+                    break;
+                case 8:
+                    await Task.Delay(16500); // Wait for 16.5 seconds
+                    break;
+                case 9:
+                    await Task.Delay(9000); // Wait for 9 seconds
+                    break;
+                case 10:
+                    await Task.Delay(16500); // Wait for 16.5 seconds
+                    break;
+                case 11:
+                    await Task.Delay(16500); // Wait for 16.5 seconds
+                    break;
+                case 12:
+                    await Task.Delay(18500); // Wait for 18.5 seconds
+                    break;
+                case 13:
+                    await Task.Delay(21500); // Wait for 21.5 seconds
+                    break;
+                case 14:
+                    await Task.Delay(19000); // Wait for 19 seconds
+                    break;
+                default:
+                    break;
+            }
 
             //reset backcolor after changing it by clicking choice button
             choice1a_btn.BackColor = Color.Transparent;
@@ -436,33 +692,46 @@ namespace DealWithExcel
             //end of questions
             if (row > dataSet.Tables[0].Rows.Count || money_index == money.Length - 1)
             {
+                //won the million
+                await Task.Delay(1000); // Wait for 1 seconds
+                if (helper.IsSoundOn)
+                {
+                    player = new SoundPlayer(Properties.Resources._1000000);
+                    player.Play();
+                }
+                await Task.Delay(8000); // Wait for 8 seconds
+                label15.BackColor = Color.Green;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.LightGreen;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.Green;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.LightGreen;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.Green;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.LightGreen;
+                await Task.Delay(400); // Wait for .4 seconds
+                label15.BackColor = Color.LightGreen;
+                await Task.Delay(13000); // Wait for 13 seconds
                 //close ShowDataForm first if it is opened
                 if (Application.OpenForms["ShowDataForm"] != null)
                 {
                     ShowDataForm dataForm = (ShowDataForm)Application.OpenForms["ShowDataForm"];
                     dataForm.Close();
                 }
-                ResultForm resultForm = new ResultForm(language, money[money_index], money_index, num_of_questions, Difficulty);
+                ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
                 money_index = 0;
-                stream.Close();
-                //won the million (delay = 3.5 sec)
-                await Task.Delay(1900); // Wait for 1.9 seconds
-                label15.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
-                label15.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
-                label15.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
-                label15.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
-                label15.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
-                label15.BackColor = Color.LightGreen;
                 Close();
                 resultForm.ShowDialog();
             }
 
             //else
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.thinking);
+                player.PlayLooping();
+            }
             Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
             if (language == "arabic")
             {
@@ -496,13 +765,17 @@ namespace DealWithExcel
             }
             this.Enabled = true;
             people_chart.Hide();
-
             money_label.Hide();
             money_panel20.Hide();
             money_panel40.Hide();
             money_panel50.Hide();
             money_panel60.Hide();
             money_panel80.Hide();
+        }
+
+        private void Help_Show_All_btn_MouseHover(object sender, EventArgs e)
+        {
+
         }
 
         private async void Change_money_Color(int money_index)
@@ -512,187 +785,269 @@ namespace DealWithExcel
                 case 0://change question delay = 2sec
                     label1.BackColor = Color.Orange;
                     break;
-                case 1://change question delay = 2.1sec
+                case 1://change question delay = 6sec
+                    await Task.Delay(1000); // Wait for 1 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._100);
+                        player.Play();
+                    }
                     await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label1.BackColor = Color.Transparent;
                     label2.BackColor = Color.DarkOrange;
                     break;
-                case 2://change question delay = 2.2sec
-                    await Task.Delay(600); // Wait for .6 seconds
+                case 2://change question delay = 6sec
+                    await Task.Delay(1000); // Wait for 1 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._200);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label2.BackColor = Color.Transparent;
                     label3.BackColor = Color.DarkOrange;
                     break;
-                case 3://change question delay = 2.3sec
-                    await Task.Delay(700); // Wait for .7 seconds
+                case 3://change question delay = 12sec
+                    await Task.Delay(2000); // Wait for 2 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._300_next_500);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label3.BackColor = Color.Transparent;
                     label4.BackColor = Color.DarkOrange;
                     break;
-                case 4://change question delay = 2.4sec
-                    await Task.Delay(800); // Wait for .8 seconds
+                case 4://change question delay = 13sec
+                    await Task.Delay(3000); // Wait for 3 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._500_next_1000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label4.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label4.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label4.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
-                    label4.BackColor = Color.DarkOrange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
+                    label4.BackColor = Color.Orange;
+                    await Task.Delay(500); // Wait for .5 seconds
                     label4.BackColor = Color.Transparent;
-                    label5.BackColor = Color.Orange;
+                    label5.BackColor = Color.DarkOrange;
                     break;
-                case 5://change question delay = 2.5sec
-                    await Task.Delay(900); // Wait for 0.9 seconds
+                case 5://change question delay = 10sec
+                    await Task.Delay(3000); // Wait for 3 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._1000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label5.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label5.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label5.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label5.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
-                    label5.BackColor = Color.Green;
+                    await Task.Delay(500); // Wait for .5 seconds
                     label5.BackColor = Color.Transparent;
                     label6.BackColor = Color.DarkOrange;
                     break;
-                case 6://change question delay = 2.6sec
-                    await Task.Delay(1000); // Wait for 1 seconds
+                case 6://change question delay = 13sec
+                    await Task.Delay(3000); // Wait for 3 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._2000_next_4000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label6.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label6.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label6.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label6.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
-                    label6.BackColor = Color.Green;
+                    await Task.Delay(500); // Wait for .5 seconds
                     label6.BackColor = Color.Transparent;
                     label7.BackColor = Color.DarkOrange;
                     break;
-                case 7://change question delay = 2.7sec
-                    await Task.Delay(1100); // Wait for 1.1 seconds
+                case 7://change question delay = 15sec
+                    await Task.Delay(3000); // Wait for 3 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._4000_next_8000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label7.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label7.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label7.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label7.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label7.BackColor = Color.Transparent;
                     label8.BackColor = Color.DarkOrange;
                     break;
-                case 8://change question delay = 2.8sec
-                    await Task.Delay(1200); // Wait for 1.2 seconds
+                case 8://change question delay = 16.5sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._8000_next_16000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label8.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label8.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label8.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label8.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label8.BackColor = Color.Transparent;
                     label9.BackColor = Color.DarkOrange;
                     break;
-                case 9://change question delay = 2.9sec
-                    await Task.Delay(1300); // Wait for 1.3 seconds
+                case 9://change question delay = 9sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._16000_next_32000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label9.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label9.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label9.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label9.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label9.BackColor = Color.Transparent;
                     label10.BackColor = Color.DarkOrange;
                     break;
-                case 10://change question delay = 3sec
-                    await Task.Delay(1400); // Wait for 1.4 seconds
+                case 10://change question delay = 16.5sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._32000_next_64000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label10.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label10.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label10.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label10.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label10.BackColor = Color.Transparent;
                     label11.BackColor = Color.DarkOrange;
                     break;
-                case 11://change question delay = 3.1sec
-                    await Task.Delay(1500); // Wait for 1.5 seconds
+                case 11://change question delay = 16.5sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._64000_next_125000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label11.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label11.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label11.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label11.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label11.BackColor = Color.Transparent;
                     label12.BackColor = Color.DarkOrange;
                     break;
-                case 12://change question delay = 3.2sec
-                    await Task.Delay(1600); // Wait for 1.6 seconds
+                case 12://change question delay = 18.5sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._125000_next_250000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label12.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label12.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label12.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label12.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label12.BackColor = Color.Transparent;
                     label13.BackColor = Color.DarkOrange;
                     break;
-                case 13://change question delay = 3.3sec
-                    await Task.Delay(1700); // Wait for 1.7 seconds
+                case 13://change question delay = 21.5sec
+                    await Task.Delay(3000); // Wait for 3 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._250000_next_500000);
+                        player.Play();
+                    }
+                    await Task.Delay(4000); // Wait for 4 seconds
                     label13.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label13.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label13.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label13.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label13.BackColor = Color.Transparent;
                     label14.BackColor = Color.DarkOrange;
                     break;
-                case 14://change question delay = 3.4sec
-                    await Task.Delay(1800); // Wait for 1.8 seconds
+                case 14://change question delay = 19sec
+                    await Task.Delay(3500); // Wait for 3.5 seconds
+                    if (helper.IsSoundOn)
+                    {
+                        player = new SoundPlayer(Properties.Resources._500000_next_1000000);
+                        player.Play();
+                    }
+                    await Task.Delay(500); // Wait for .5 seconds
                     label14.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label14.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label14.BackColor = Color.Green;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label14.BackColor = Color.Orange;
-                    await Task.Delay(400); // Wait for .4 seconds
+                    await Task.Delay(500); // Wait for .5 seconds
                     label14.BackColor = Color.Transparent;
                     label15.BackColor = Color.DarkOrange;
                     break;
@@ -706,18 +1061,12 @@ namespace DealWithExcel
         {
             //add some suspense
             await Task.Delay(2000); // Wait for 2 seconds
-            if (money[money_index] == 500_000)
-                await Task.Delay(500); // Wait for additional .5 seconds
-            else if (money[money_index] == 600_000)
-                await Task.Delay(600); // Wait for additional .6 seconds
-            else if (money[money_index] == 700_000)
-                await Task.Delay(700); // Wait for additional .7 seconds
-            else if (money[money_index] == 800_000)
-                await Task.Delay(800); // Wait for additional .8 seconds
-            else if (money[money_index] == 900_000)
-                await Task.Delay(900); // Wait for additional .9 seconds
-            else if (money[money_index] == 1000_000)
-                await Task.Delay(1000); // Wait for additional 1 seconds
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.wrong_answer);
+                player.Play();
+            }
+            await Task.Delay(6000); // Wait for additional 6 seconds
             switch (wrong_clicked_ans)
             {
                 case 'a':
@@ -738,49 +1087,49 @@ namespace DealWithExcel
             if (choice1a_btn.Text != "" && correct_answer == choice1a_btn.Text.Substring(2))
             {
                 choice1a_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice1a_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice1a_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice1a_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice1a_btn.BackColor = Color.Green;
             }
             else if (choice2b_btn.Text != "" && correct_answer == choice2b_btn.Text.Substring(2))
             {
                 choice2b_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice2b_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice2b_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice2b_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice2b_btn.BackColor = Color.Green;
             }
             else if (choice3c_btn.Text != "" && correct_answer == choice3c_btn.Text.Substring(2))
             {
                 choice3c_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice3c_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice3c_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice3c_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice3c_btn.BackColor = Color.Green;
             }
             else if (choice4d_btn.Text != "" && correct_answer == choice4d_btn.Text.Substring(2))
             {
                 choice4d_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice4d_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice4d_btn.BackColor = Color.Green;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice4d_btn.BackColor = Color.LightGreen;
-                await Task.Delay(400); // Wait for .4 seconds
+                await Task.Delay(500); // Wait for .5 seconds
                 choice4d_btn.BackColor = Color.Green;
             }
             //open result form automatically after 1sec
@@ -918,24 +1267,49 @@ namespace DealWithExcel
         {
             people_chart.Hide();
             money_label.Text = money[money_index].ToString();
-            await Task.Delay(500);
-            money_panel20.Show();
-            money_label.ForeColor = Color.Goldenrod;
-            money_label.Show();
-            await Task.Delay(100);
-            money_panel20.Hide();
-            money_panel40.Show();
-            await Task.Delay(100);
-            money_panel40.Hide();
-            money_panel50.Show();
-            money_label.ForeColor = Color.Gold;
-            await Task.Delay(100);
-            money_panel50.Hide();
-            money_panel60.Show();
-            money_label.Show();
-            await Task.Delay(100);
-            money_panel60.Hide();
-            money_panel80.Show();
+            bool flag = false;
+            if (money_index == 5)
+            {
+                await Task.Delay(3000);
+                flag = true;
+            }
+            else if (money_index == 9)
+            {
+                await Task.Delay(3500);
+                flag = true;
+            }
+            else if (money_index >= 12)
+            {
+                if (money_index == money.Length - 1)//million
+                    await Task.Delay(9000);
+                else
+                    await Task.Delay(5000);
+                flag = true;
+            }
+            Show_Money_Panel(flag);
+        }
+        private async void Show_Money_Panel(bool flag)
+        {
+            if (flag)
+            {
+                money_panel20.Show();
+                money_label.ForeColor = Color.Goldenrod;
+                money_label.Show();
+                await Task.Delay(100);
+                money_panel20.Hide();
+                money_panel40.Show();
+                await Task.Delay(100);
+                money_panel40.Hide();
+                money_panel50.Show();
+                money_label.ForeColor = Color.Gold;
+                await Task.Delay(100);
+                money_panel50.Hide();
+                money_panel60.Show();
+                money_label.Show();
+                await Task.Delay(100);
+                money_panel60.Hide();
+                money_panel80.Show();
+            }
         }
     }
 }

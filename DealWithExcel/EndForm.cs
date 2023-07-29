@@ -1,16 +1,31 @@
 ﻿using System;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DealWithExcel
+namespace MillionLE
 {
     public partial class EndForm : Form
     {
         private readonly string language;
-        public EndForm(string lang)
+        SoundPlayer player;
+        readonly HelperClass helper;
+        public EndForm(string lang,HelperClass helper)
         {
             InitializeComponent();
             language = lang;
+            this.helper=helper;
+            //sync sound with Result form
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.End);
+                player.PlayLooping();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+            }
         }
 
         private void EndForm_Load(object sender, EventArgs e)
@@ -31,7 +46,7 @@ namespace DealWithExcel
 
         private void Skip_btn_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
         private async void Write_text(string [] text)
         {
@@ -45,6 +60,8 @@ namespace DealWithExcel
                 }
                 Written_text.AppendText(Environment.NewLine);
             }
+            await Task.Delay(1000); // Wait for 1 second
+            Application.Exit();
         }
 
         private void Exit_btn_Click(object sender, EventArgs e)
@@ -64,6 +81,31 @@ namespace DealWithExcel
             //exit app if 'yes' choosed
             if (result == DialogResult.Yes)
                 Application.Exit();
+        }
+
+        private void Sound_btn_Click(object sender, EventArgs e)
+        {
+            // Toggle the state
+            helper.IsSoundOn = !helper.IsSoundOn;
+
+            // Set the button's background image based on the state
+            if (helper.IsSoundOn)
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_on;
+                player = new SoundPlayer(Properties.Resources.End);
+                player.Play();
+            }
+            else
+            {
+                Sound_btn.BackgroundImage = Properties.Resources.sound_off;
+                player.Stop();
+            }
+        }
+
+        private void EndForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (helper.IsSoundOn)
+                player.Stop();
         }
     }
 }
