@@ -4,7 +4,7 @@
 <br>
 <p dir="rtl">لغة البرمجة : #C</p>
 <br>
-<p dir="rtl">بيئة التطوير: .net framework</p>
+<p dir="rtl">بيئة التطوير: net framework.</p>
 <br>
 <h1>Who will win the Million LE</h1>
 <br>
