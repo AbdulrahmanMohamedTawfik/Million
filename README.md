@@ -8,9 +8,9 @@
 <br>
 <h1>Who will win the Million LE</h1>
 <br>
-Million Game is a desktop question and choices game 
+MillionLE Game is a desktop question and choices game 
 <br>
-with alot of options and alot of entertainment too.
+but with alot of options and alot of entertainment too.
 <br>
 language: C#
 <br>
