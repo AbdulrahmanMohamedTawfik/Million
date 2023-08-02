@@ -19,8 +19,6 @@ namespace MillionLE
 {
     public partial class MainForm : Form
     {
-        private int Difficulty;
-        public string language;
         SoundPlayer player;
         readonly HelperClass helper;
         private static readonly string EnglishfilePath = "Data\\EnglishData.xlsx", ArabicfilePath = "Data\\ArabicData.xlsx";
@@ -30,111 +28,128 @@ namespace MillionLE
         public MainForm()
         {
             InitializeComponent();
-            progressBar1.Hide();
+            progressBar.Hide();
             helper = new HelperClass
             {
-                IsSoundOn = true
+                Difficulty = "Easy",
+                Language = "arabic",
+                IsSoundOn = true,
+                IsCorrect = false,
+                IsHelp50Used = false,
             };
         }
 
         private async void Start_btn_Click(object sender, EventArgs e)
         {
-            progressBar1.Show();
+            Start_btn.Enabled = false;
+            progressBar.Show();
             for (int i = 0; i < 3; i++)//30
             {
-                progressBar1.PerformStep();
+                progressBar.PerformStep();
                 await Task.Delay(100);
+            }
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.hello_and_question1);
+                player.Play();
             }
             bool isFormOpen = Application.OpenForms.OfType<GameForm>().Any();
             if (isFormOpen)
                 Hide();
-            if (language == "arabic")
+            if (helper.Language == "arabic")
             {
                 stream = File.Open(ArabicfilePath, FileMode.Open, FileAccess.Read);
                 for (int i = 0; i < 3; i++)//60
                 {
-                    progressBar1.PerformStep();
-                    await Task.Delay(100);
+                    progressBar.PerformStep();
+                    await Task.Delay(50);
                 }
                 reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
                 for (int i = 0; i < 3; i++)//90
                 {
-                    progressBar1.PerformStep();
-                    await Task.Delay(100);
+                    progressBar.PerformStep();
+                    await Task.Delay(50);
                 }
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 stream = File.Open(EnglishfilePath, FileMode.Open, FileAccess.Read);
                 for (int i = 0; i < 3; i++)//60
                 {
-                    progressBar1.PerformStep();
-                    await Task.Delay(100);
+                    progressBar.PerformStep();
+                    await Task.Delay(50);
                 }
                 reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" });
                 for (int i = 0; i < 3; i++)//90
                 {
-                    progressBar1.PerformStep();
-                    await Task.Delay(100);
+                    progressBar.PerformStep();
+                    await Task.Delay(50);
                 }
             }
-            GameForm f = new GameForm(reader, language, helper, Difficulty);
-            progressBar1.PerformStep();
+            GameForm f = new GameForm(reader,helper);
+            progressBar.PerformStep();
             f.ShowDialog();
             //back to main again
             stream.Close();
-            progressBar1.Value = 0;
-            progressBar1.Hide();
+            progressBar.Value = 0;
+            progressBar.Hide();
             if (helper.IsSoundOn)
                 Sound_btn.BackgroundImage = Properties.Resources.sound_on;
             else
                 Sound_btn.BackgroundImage = Properties.Resources.sound_off;
             Show();
+            if (helper.IsSoundOn)
+            {
+                player = new SoundPlayer(Properties.Resources.start_music);
+                player.PlayLooping();
+            }
+            Start_btn.Enabled = true;
         }
-        //75 Arabic question
-        //60 English question
+
         private void Easy_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            Difficulty = 20;
+            helper.Difficulty = "Easy";
             Start_btn.FlatAppearance.MouseOverBackColor = Color.LightGreen;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Green;
         }
 
         private void Med_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            Difficulty = 40;
+            helper.Difficulty = "Medium";
             Start_btn.FlatAppearance.MouseOverBackColor = Color.DeepSkyBlue;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Blue;
         }
 
         private void Hard_rad_btn_CheckedChanged(object sender, EventArgs e)
         {
-            Difficulty = 60;
+            helper.Difficulty = "Hard";
             Start_btn.FlatAppearance.MouseOverBackColor = Color.LightCoral;
             Start_btn.FlatAppearance.MouseDownBackColor = Color.Red;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             easy_rad_btn.Checked = true;
             ar_radioButton.Checked = true;
-            IntroForm introForm = new IntroForm();
-            introForm.ShowDialog();
-            player = new SoundPlayer(Properties.Resources.intro);
-            player.Play();
+            //show intro
+            //IntroForm introForm = new IntroForm();
+            //introForm.ShowDialog();
+            player = new SoundPlayer(Properties.Resources.start_music);
+            player.PlayLooping();
         }
 
         private void En_radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            language = "english";
-            lang_groupBox.Text = "Coose Language:";
+            helper.Language = "english";
+            lang_groupBox.Text = "Choose Language:";
             Start_btn.Text = "Start";
             difficulty_groupBox.Text = "Choose Difficulty:";
             lang_groupBox.RightToLeft = RightToLeft.No;
             ar_radioButton.RightToLeft = RightToLeft.No;
             en_radioButton.RightToLeft = RightToLeft.No;
-            ar_pictureBox.Location = new Point(100, 30);
-            en_pictureBox.Location = new Point(120, 65);
+            ar_pictureBox.Location = new Point(115, 40);
+            en_pictureBox.Location = new Point(128, 90);
             easy_rad_btn.Text = "Easy";
             med_rad_btn.Text = "Medium";
             hard_rad_btn.Text = "Hard";
@@ -149,13 +164,13 @@ namespace MillionLE
 
         private void Ar_radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            language = "arabic";
+            helper.Language = "arabic";
             lang_groupBox.Text = "اختر اللغة:";
             lang_groupBox.RightToLeft = RightToLeft.Yes;
             ar_radioButton.RightToLeft = RightToLeft.Yes;
             en_radioButton.RightToLeft = RightToLeft.Yes;
-            ar_pictureBox.Location = new Point(24, 30);
-            en_pictureBox.Location = new Point(14, 65);
+            ar_pictureBox.Location = new Point(30, 40);
+            en_pictureBox.Location = new Point(22, 90);
             Start_btn.Text = "ابدأ";
             difficulty_groupBox.Text = "اختر مستوى الصعوبة:";
             easy_rad_btn.Text = "سهل";
@@ -165,7 +180,7 @@ namespace MillionLE
             med_rad_btn.RightToLeft = RightToLeft.Yes;
             hard_rad_btn.RightToLeft = RightToLeft.Yes;
             easy_rad_btn.Location = new Point(344, 50);
-            med_rad_btn.Location = new Point(185, 50);
+            med_rad_btn.Location = new Point(200, 50);
             hard_rad_btn.Location = new Point(67, 50);
             difficulty_groupBox.RightToLeft = RightToLeft.Yes;
         }
@@ -182,11 +197,11 @@ namespace MillionLE
         private void Exit_btn_Click(object sender, EventArgs e)
         {
             DialogResult result = DialogResult.No;
-            if (language == "arabic")
+            if (helper.Language == "arabic")
             {
                 result = MessageBox.Show("عايز تخرج من اللعبة اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 result = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
@@ -206,7 +221,7 @@ namespace MillionLE
             {
                 Sound_btn.BackgroundImage = Properties.Resources.sound_on;
                 if (player != null && player.IsLoadCompleted)
-                    player.Play();
+                    player.PlayLooping();
             }
             else
             {

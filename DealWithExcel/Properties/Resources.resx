@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="call_friend_30sec_counter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Audio\WAV\call-friend-30sec-counter.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="call_friend_counter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\call_friend_counter.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="clap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Audio\clap.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="call_friend_intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\call_friend_intro.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CORRECT_ANSWER" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\CORRECT_ANSWER.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -130,14 +130,20 @@
   <data name="Countdown_10_seconds" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\Countdown-10-seconds.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Credits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\Credits.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="End" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\End.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="fireworks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\fireworks.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="hello_and_question1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\hello_and_question1.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="help_50_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\help_50_50.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Audio\WAV\intro.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="people_opinion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\people-opinion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -147,6 +153,9 @@
   </data>
   <data name="sound_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sound_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="start_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Audio\start_music.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="thinking" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Audio\WAV\thinking.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

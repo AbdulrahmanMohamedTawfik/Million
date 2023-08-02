@@ -8,34 +8,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelDataReader;
 using System.Media;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MillionLE
 {
     public partial class GameForm : Form
     {
-        private readonly int Difficulty;
-        private readonly string language;
         private System.Windows.Forms.Timer timer;
         private string correct_answer;
-
         DataSet dataSet;
-        public int money_index = 0, choice1, choice2, choice3, choice4;
+        public int sheet_index = 0, money_index = 0, choice1, choice2, choice3, choice4, del1 = 0, del2 = 0, not_del1 = 0, not_del2 = 0;
         readonly int[] money = { 0, 100, 200, 300, 500, 1_000, 2_000, 4_000, 8_000, 16_000, 32_000, 64_000, 125_000, 250_000, 500_000, 1000_0000 };
-        private static int row = 0, help50_used = 0, deleted_chice1, deleted_chice2;
+        private static int row = 0;
         private static readonly int num_of_questions = 15;
         static readonly List<int> row_values = new List<int>();
         readonly Random random = new Random();
         SoundPlayer player;
         readonly HelperClass helper;
-        IExcelDataReader reader;
+        readonly IExcelDataReader reader;
 
-        public GameForm(IExcelDataReader reader, string lang, HelperClass helper, int DifficultyValue = 15)
+        public GameForm(IExcelDataReader reader, HelperClass helper)
         {
             InitializeComponent();
             this.reader = reader;
-            Difficulty = DifficultyValue;
-            language = lang;
             this.helper = helper;
             //reset call friend result
             helper.IsCorrect = false;
@@ -70,15 +64,15 @@ namespace MillionLE
             //tooltip
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(Help_Show_All_btn, "Show all questions for 10sec");
-            //manage language direction
-            if (language == "arabic")
+            //manage helper.Language direction
+            if (helper.Language == "arabic")
             {
                 SwapButtonLocations(choice1a_btn, choice2b_btn);
                 SwapButtonLocations(choice3c_btn, choice4d_btn);
                 //tooltip
                 toolTip.SetToolTip(Help_Show_All_btn, "رؤية كل الأسئلة لمدة 10ث");
             }
-            help50_used = 0;
+
             Loading();
         }
 
@@ -86,12 +80,24 @@ namespace MillionLE
         private void Loading()
         {
             //generate 1st quetion
-            row = random.Next(Difficulty - 20, Difficulty);
+            row = random.Next(0, 30);
             row_values.Clear();//start new memorization
             row_values.Add(row);//memorize choosen question to eliminate repeatition
-
-            //handling language
-            if (language == "arabic")
+            //choose sheet based on helper.Difficulty
+            switch (helper.Difficulty)
+            {
+                case "Easy":
+                    sheet_index = 0;
+                    break;
+                case "Medium":
+                    sheet_index = 1;
+                    break;
+                case "Hard":
+                    sheet_index = 2;
+                    break;
+            }
+            //handling helper.Language
+            if (helper.Language == "arabic")
             {
                 Question_txt.RightToLeft = RightToLeft.Yes;
                 money_values_panel.RightToLeft = RightToLeft.Yes;
@@ -106,14 +112,15 @@ namespace MillionLE
 
                 dataSet = reader.AsDataSet();
                 //generate QA text
-                Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
+                Question_txt.Text = dataSet.Tables[sheet_index].Rows[row][0].ToString();//all questions at column 0
                 GenerateRandomChoices(out choice1, out choice2, out choice3, out choice4);
-                choice1a_btn.Text = "أ-" + dataSet.Tables[0].Rows[row][choice1].ToString();
-                choice2b_btn.Text = "ب-" + dataSet.Tables[0].Rows[row][choice2].ToString();
-                choice3c_btn.Text = "ج-" + dataSet.Tables[0].Rows[row][choice3].ToString();
-                choice4d_btn.Text = "د-" + dataSet.Tables[0].Rows[row][choice4].ToString();
+                choice1a_btn.Text = "أ-" + dataSet.Tables[sheet_index].Rows[row][choice1].ToString();
+                choice2b_btn.Text = "ب-" + dataSet.Tables[sheet_index].Rows[row][choice2].ToString();
+                choice3c_btn.Text = "ج-" + dataSet.Tables[sheet_index].Rows[row][choice3].ToString();
+                choice4d_btn.Text = "د-" + dataSet.Tables[sheet_index].Rows[row][choice4].ToString();
+
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 Question_txt.RightToLeft = RightToLeft.No;
                 money_values_panel.RightToLeft = RightToLeft.No;
@@ -127,25 +134,36 @@ namespace MillionLE
                 //read data
                 dataSet = reader.AsDataSet();
                 //generate QA text
-                Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
+                Question_txt.Text = dataSet.Tables[sheet_index].Rows[row][0].ToString();
                 GenerateRandomChoices(out choice1, out choice2, out choice3, out choice4);
-                choice1a_btn.Text = "a-" + dataSet.Tables[0].Rows[row][choice1].ToString();
-                choice2b_btn.Text = "b-" + dataSet.Tables[0].Rows[row][choice2].ToString();
-                choice3c_btn.Text = "c-" + dataSet.Tables[0].Rows[row][choice3].ToString();
-                choice4d_btn.Text = "d-" + dataSet.Tables[0].Rows[row][choice4].ToString();
+                choice1a_btn.Text = "a-" + dataSet.Tables[sheet_index].Rows[row][choice1].ToString();
+                choice2b_btn.Text = "b-" + dataSet.Tables[sheet_index].Rows[row][choice2].ToString();
+                choice3c_btn.Text = "c-" + dataSet.Tables[sheet_index].Rows[row][choice3].ToString();
+                choice4d_btn.Text = "d-" + dataSet.Tables[sheet_index].Rows[row][choice4].ToString();
             }
-            correct_answer = dataSet.Tables[0].Rows[row][1].ToString();//the correct choice is always in column1
+            correct_answer = dataSet.Tables[sheet_index].Rows[row][1].ToString();//the correct choice is always in column1
             Change_money_Color(money_index);
         }
 
 
-        //the correct choice is always in column1 but choices is distributed randomly on buttons
+        //the correct choice is always in column 1 (2nd column) but choices is distributed randomly on buttons
         //so we check if choice_btn.text == column1.text
         private void Choice1a_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            Cursor = Cursors.No;
-            this.Enabled = false;
+            //Cursor = Cursors.No;
+            //this.Enabled = false;
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+            //Exit_btn.Enabled=false;
+            withdraw_btn.Enabled = false;
+            Leave_btn.Enabled = false;
+            help_50_50_btn.Enabled = false;
+            people_help_btn.Enabled = false;
+            help_call_btn.Enabled = false;
+            Help_Show_All_btn.Enabled = false;
             choice1a_btn.BackColor = Color.DarkOrange;
             if (correct_answer == choice1a_btn.Text.Substring(2))
             {
@@ -164,8 +182,18 @@ namespace MillionLE
         private void Choice2b_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            Cursor = Cursors.No;
-            this.Enabled = false;
+            //Cursor = Cursors.No;
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+            //Exit_btn.Enabled = false;
+            withdraw_btn.Enabled = false;
+            Leave_btn.Enabled = false;
+            help_50_50_btn.Enabled = false;
+            people_help_btn.Enabled = false;
+            help_call_btn.Enabled = false;
+            Help_Show_All_btn.Enabled = false;
             choice2b_btn.BackColor = Color.DarkOrange;
             if (correct_answer == choice2b_btn.Text.Substring(2))
             {
@@ -184,8 +212,18 @@ namespace MillionLE
         private void Choice3c_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            Cursor = Cursors.No;
-            this.Enabled = false;
+            //Cursor = Cursors.No;
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+            //Exit_btn.Enabled = false;
+            withdraw_btn.Enabled = false;
+            Leave_btn.Enabled = false;
+            help_50_50_btn.Enabled = false;
+            people_help_btn.Enabled = false;
+            help_call_btn.Enabled = false;
+            Help_Show_All_btn.Enabled = false;
             choice3c_btn.BackColor = Color.DarkOrange;
             if (correct_answer == choice3c_btn.Text.Substring(2))
             {
@@ -204,8 +242,18 @@ namespace MillionLE
         private void Choice4d_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            Cursor = Cursors.No;
-            this.Enabled = false;
+            //Cursor = Cursors.No;
+            choice1a_btn.Enabled = false;
+            choice2b_btn.Enabled = false;
+            choice3c_btn.Enabled = false;
+            choice4d_btn.Enabled = false;
+            //Exit_btn.Enabled = false;
+            withdraw_btn.Enabled = false;
+            Leave_btn.Enabled = false;
+            help_50_50_btn.Enabled = false;
+            people_help_btn.Enabled = false;
+            help_call_btn.Enabled = false;
+            Help_Show_All_btn.Enabled = false;
             choice4d_btn.BackColor = Color.DarkOrange;
             if (correct_answer == choice4d_btn.Text.Substring(2))
             {
@@ -229,7 +277,7 @@ namespace MillionLE
                 X_Help_Show_All_btn.Show();
                 Help_Show_All_btn.Hide();
                 this.Enabled = false;
-                ShowDataForm form2 = new ShowDataForm(language);
+                ShowDataForm form2 = new ShowDataForm(helper.Language, sheet_index);
                 form2.Show();
                 this.Enabled = true;
                 Count10pictureBox.Show();
@@ -253,7 +301,7 @@ namespace MillionLE
         {
             help_50_50_btn.Hide();
             x_50_50_btn.Show();
-            int del1 = 0, del2 = 0;
+
             help_50_50_btn.BackColor = Color.DarkOrange;
             Cursor = Cursors.No;
             this.Enabled = false;
@@ -262,7 +310,7 @@ namespace MillionLE
                 player = new SoundPlayer(Properties.Resources.help_50_50);
                 player.Play();
             }
-            await Task.Delay(8500); // Wait for 9 seconds
+            await Task.Delay(8600); // Wait for 8.6 seconds
             Cursor = Cursors.Default;
             help_50_50_btn.BackColor = Color.Transparent;
             if (correct_answer == choice1a_btn.Text.Substring(2))//1st buttton is correct => delete any other 2 buttons from rest(2,3,4)
@@ -305,9 +353,7 @@ namespace MillionLE
                 } while (del2 == del1);
                 Delete_two_choices(del1, del2);
             }
-            help50_used = 1;
-            deleted_chice1 = del1;
-            deleted_chice2 = del2;
+            helper.IsHelp50Used = true;
             this.Enabled = true;
 
             await Task.Delay(1500);
@@ -323,7 +369,7 @@ namespace MillionLE
             // Clear the existing data points
 
             var xAxis = people_chart.ChartAreas[0].AxisX;
-            if (language == "arabic")
+            if (helper.Language == "arabic")
             {
                 xAxis.CustomLabels.Add(0.5, 1.5, "أ");
                 xAxis.CustomLabels.Add(1.5, 2.5, "ب");
@@ -340,7 +386,7 @@ namespace MillionLE
                     people_chart.Series["الاصوات"].Points.AddXY(i + 1, randomValue);
                 }
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 xAxis.CustomLabels.Add(0.5, 1.5, "a");
                 xAxis.CustomLabels.Add(1.5, 2.5, "b");
@@ -361,11 +407,252 @@ namespace MillionLE
             people_chart.Invalidate();
         }
 
+        void Scale_2_to_100(ref int[] percentages)
+        {
+            int sum = percentages[not_del1] + percentages[not_del2];
+            while (sum != 100)
+            {
+                if (sum > 100)
+                {
+                    percentages[not_del1] -= 1;
+                    sum = percentages[not_del1] + percentages[not_del2];
+                    if (sum == 100)
+                        break;
+                    percentages[not_del2] -= 1;
+                    sum = percentages[not_del1] + percentages[not_del2];
+                    if (sum == 100)
+                        break;
+                }
+                else if (sum < 100)
+                {
+                    percentages[not_del1] += 1;
+                    sum = percentages[not_del1] + percentages[not_del2];
+                    if (sum == 100)
+                        break;
+                    percentages[not_del2] += 1;
+                    sum = percentages[not_del1] + percentages[not_del2];
+                    if (sum == 100)
+                        break;
+                }
+            }
+        }
+
+        void Scale_4_to_100(ref int[] percentages)
+        {
+            int sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+            while (sum != 100)
+            {
+                if (percentages[0] < 0)
+                    percentages[0] = 0;
+                if (percentages[1] < 0)
+                    percentages[1] = 0;
+                if (percentages[2] < 0)
+                    percentages[2] = 0;
+                if (percentages[3] < 0)
+                    percentages[3] = 0;
+                if (sum > 100)
+                {
+                    percentages[1] -= 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                    percentages[2] -= 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                    percentages[3] -= 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                }
+                else if (sum < 100)
+                {
+                    percentages[0] += 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                    percentages[1] += 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                    percentages[2] += 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                    percentages[3] += 1;
+                    sum = percentages[0] + percentages[1] + percentages[2] + percentages[3];
+                    if (sum == 100)
+                        break;
+                }
+            }
+            if (percentages[1] < 0)
+            {
+                percentages[1] = 0;
+                percentages[0] -= 1;
+            }
+            if (percentages[2] < 0)
+            {
+                percentages[2] = 0;
+                percentages[0] -= 1;
+            }
+            if (percentages[3] < 0)
+            {
+                percentages[3] = 0;
+                percentages[0] -= 1;
+            }
+        }
+
+        void Get_not_del_indexes()//get not deleted answers
+        {
+            int[] not_del;
+            List<int> indexes = new List<int> { 1, 2, 3, 4 };
+            indexes.Remove(del1);
+            indexes.Remove(del2);
+            Console.WriteLine("indexes:");
+            foreach (int i in indexes)
+            {
+                Console.WriteLine(i);
+            }
+            not_del = indexes.ToArray();
+            not_del1 = not_del[0] - 1;
+            not_del2 = not_del[1] - 1;
+        }
+
+        int Get_reliability_level_using_difficulty()
+        {
+            int level = 0;
+            switch (helper.Difficulty)
+            {
+                case "Easy":
+                    level = 11;
+                    break;
+                case "Medium":
+                    level = 9;
+                    break;
+                case "Hard":
+                    level = 7;
+                    break;
+            }
+            return level;
+        }
+
+        private int[] GenerateRandomReliablePercentages()
+        {
+            Random random = new Random();
+            int[] percentages = new int[4];
+            int reliability = Get_reliability_level_using_difficulty();
+            if (helper.IsHelp50Used)
+            {
+                Get_not_del_indexes();//array holds two indexes of not deleted answers(one of them are correct)
+                if (choice1a_btn.Text != "" && correct_answer == choice1a_btn.Text.Substring(2))//1st buttton is correct => increase votes of 1st choice
+                {
+                    //randomize & shuffle
+                    percentages[not_del1] = random.Next(50);
+                    percentages[not_del2] = random.Next(50);
+                    //add reliability
+                    percentages[0] += reliability;
+                    Scale_2_to_100(ref percentages);
+
+                }
+                else if (choice2b_btn.Text != "" && correct_answer == choice2b_btn.Text.Substring(2))//2nd buttton is correct => increase votes of 2nd choice
+                {
+                    //randomize & shuffle
+                    percentages[not_del1] = random.Next(50);
+                    percentages[not_del2] = random.Next(50);
+                    //add reliability
+                    percentages[1] += reliability;
+                    Scale_2_to_100(ref percentages);
+                }
+                else if (choice3c_btn.Text != "" && correct_answer == choice3c_btn.Text.Substring(2))//3rd buttton is correct => increase votes of 3rd choice
+                {
+                    //randomize & shuffle
+                    percentages[not_del1] = random.Next(50);
+                    percentages[not_del2] = random.Next(50);
+                    //add reliability
+                    percentages[2] += reliability;
+                    Scale_2_to_100(ref percentages);
+                }
+                else if (choice4d_btn.Text != "" && correct_answer == choice4d_btn.Text.Substring(2))//4th buttton is correct => increase votes of 4th choice
+                {
+                    //randomize & shuffle
+                    percentages[not_del1] = random.Next(50);
+                    percentages[not_del2] = random.Next(50);
+                    //add reliability
+                    percentages[3] += reliability;
+                    Scale_2_to_100(ref percentages);
+                }
+
+            }
+            else
+            {
+                if (choice1a_btn.Text != "" && correct_answer == choice1a_btn.Text.Substring(2))//1st buttton is correct => increase votes of 1st choice
+                {
+                    //randomize & shuffle
+                    percentages[0] = random.Next(25);
+                    percentages[1] = random.Next(25);
+                    percentages[2] = random.Next(25);
+                    percentages[3] = random.Next(25);
+                    ShuffleArray(percentages);
+                    //add reliability
+                    percentages[0] += reliability;
+                    Scale_4_to_100(ref percentages);
+
+                }
+                else if (choice2b_btn.Text != "" && correct_answer == choice2b_btn.Text.Substring(2))//2nd buttton is correct => increase votes of 2nd choice
+                {
+                    //randomize & shuffle
+                    percentages[0] = random.Next(25);
+                    percentages[1] = random.Next(25);
+                    percentages[2] = random.Next(25);
+                    percentages[3] = random.Next(25);
+                    ShuffleArray(percentages);
+                    //add reliability
+                    percentages[1] += reliability;
+                    Scale_4_to_100(ref percentages);
+                }
+                else if (choice3c_btn.Text != "" && correct_answer == choice3c_btn.Text.Substring(2))//3rd buttton is correct => increase votes of 3rd choice
+                {
+                    //randomize & shuffle
+                    percentages[0] = random.Next(25);
+                    percentages[1] = random.Next(25);
+                    percentages[2] = random.Next(25);
+                    percentages[3] = random.Next(25);
+                    ShuffleArray(percentages);
+                    //add reliability
+                    percentages[2] += reliability;
+                    Scale_4_to_100(ref percentages);
+                }
+                else if (choice4d_btn.Text != "" && correct_answer == choice4d_btn.Text.Substring(2))//4th buttton is correct => increase votes of 4th choice
+                {
+                    //randomize & shuffle
+                    percentages[0] = random.Next(25);
+                    percentages[1] = random.Next(25);
+                    percentages[2] = random.Next(25);
+                    percentages[3] = random.Next(25);
+                    ShuffleArray(percentages);
+                    //add reliability
+                    percentages[3] += reliability;
+                    Scale_4_to_100(ref percentages);
+                }
+            }
+            return percentages;
+        }
+
+        private void ShuffleArray<T>(T[] array)
+        {
+            Random random = new Random();
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                int randomIndex = random.Next(i + 1);
+                (array[randomIndex], array[i]) = (array[i], array[randomIndex]);
+            }
+        }
+
         private async void People_help_btn_Click(object sender, EventArgs e)
         {
             people_help_btn.Hide();
             x_people_help_btn.Show();
-            int[] votes = GenerateRandomVotesWithSomeReliability();
+            int[] votes = GenerateRandomReliablePercentages();
 
             //adjust some chart properties
             var xAxis = people_chart.ChartAreas[0].AxisX;
@@ -390,7 +677,7 @@ namespace MillionLE
                 UpdateChartSeriesData();
                 await Task.Delay(500); // Wait for 1 seconds
             }
-            if (language == "arabic")
+            if (helper.Language == "arabic")
             {
                 xAxis.CustomLabels.Add(0.5, 1.5, "أ");
                 xAxis.CustomLabels.Add(1.5, 2.5, "ب");
@@ -404,11 +691,11 @@ namespace MillionLE
                 foreach (var point in people_chart.Series["الاصوات"].Points)
                 {
                     point.LabelForeColor = Color.White;
-                    point.Label = votes[i].ToString();//+ "٪";
+                    point.Label = votes[i].ToString() + "٪";
                     i++;
                 }
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 xAxis.CustomLabels.Add(0.5, 1.5, "a");
                 xAxis.CustomLabels.Add(1.5, 2.5, "b");
@@ -422,7 +709,7 @@ namespace MillionLE
                 foreach (var point in people_chart.Series["Votes"].Points)
                 {
                     point.LabelForeColor = Color.White;
-                    point.Label = votes[i].ToString(); // + "%";
+                    point.Label = votes[i].ToString() + "%";
                     i++;
                 }
             }
@@ -440,27 +727,19 @@ namespace MillionLE
             //not added yet
             help_call_btn.Hide();
             x_help_call_btn.Show();
-            //...code...
+            this.Enabled = false;
             if (helper.IsSoundOn)
             {
-                player = new SoundPlayer(Properties.Resources.call_friend_30sec_counter);
+                player = new SoundPlayer(Properties.Resources.call_friend_intro);
                 player.Play();
             }
-            this.Enabled = false;
-            await Task.Delay(5000);
-            CallFriendForm callFriendForm = new CallFriendForm(helper);
+            await Task.Delay(11000);
+            CallFriendForm callFriendForm = new CallFriendForm(helper, GenerateRandomReliablePercentages());
             Hide();
             callFriendForm.ShowDialog();
             Show();
             this.Enabled = true;
-            if (helper.IsCorrect)//answered correctly
-            {
-                label17.Text = "correct";
-            }
-            else
-            {
-                label17.Text = "not correct";
-            }
+
             if (helper.IsSoundOn && player.SoundLocation == null)
             {
                 player = new SoundPlayer(Properties.Resources.thinking);
@@ -471,17 +750,17 @@ namespace MillionLE
         private void Withdraw_btn_Click(object sender, EventArgs e)
         {
             DialogResult result = DialogResult.No;
-            if (language == "arabic")
+            if (helper.Language == "arabic")
             {
                 result = MessageBox.Show("عايز تنسحب اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 result = MessageBox.Show("Are you sure you want to withdraw?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             if (result == DialogResult.Yes)
             {
-                ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
+                ResultForm resultForm = new ResultForm(helper, money[money_index], money_index, num_of_questions);
                 resultForm.ShowDialog();
                 money_index = 0;
                 Close();
@@ -492,7 +771,7 @@ namespace MillionLE
         {
             timer.Stop();
             Close();
-            ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
+            ResultForm resultForm = new ResultForm(helper, money[money_index], money_index, num_of_questions);
             money_index = 0;
             resultForm.ShowDialog();
         }
@@ -514,10 +793,10 @@ namespace MillionLE
                 ShowDataForm dataForm = (ShowDataForm)Application.OpenForms["ShowDataForm"];
                 dataForm.Close();
             }
-            //handle language
-            if (language == "arabic")
+            //handle helper.Language
+            if (helper.Language == "arabic")
                 result = MessageBox.Show("عايز تخرج من اللعبة اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            else if (language == "english")
+            else if (helper.Language == "english")
                 result = MessageBox.Show("Are you sure you want to Exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             //exit app if 'yes' choosed
             if (result == DialogResult.Yes)
@@ -533,10 +812,10 @@ namespace MillionLE
                 ShowDataForm dataForm = (ShowDataForm)Application.OpenForms["ShowDataForm"];
                 dataForm.Close();
             }
-            //handle language
-            if (language == "arabic")
+            //handle helper.Language
+            if (helper.Language == "arabic")
                 result = MessageBox.Show("عايز ترجع للشاشة الرئيسية اكيد؟", "بتأكد بس", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            else if (language == "english")
+            else if (helper.Language == "english")
                 result = MessageBox.Show("Are you sure you want to go to Home Screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             //close this form if 'yes' choosed
             if (result == DialogResult.Yes)
@@ -568,15 +847,15 @@ namespace MillionLE
             //label17.Text = this.Size.ToString();
             DialogResult result1 = DialogResult.No;
 
-            //handle language
-            if (language == "arabic")
+            //handle helper.Language
+            if (helper.Language == "arabic")
                 result1 = MessageBox.Show("حجم الشاشة مع اللعبة مظبوط؟", "ايه رأيك؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            else if (language == "english")
+            else if (helper.Language == "english")
                 result1 = MessageBox.Show("The game fits the screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             //do nothing if 'yes' choosed
             if (result1 == DialogResult.No)
             {
-                this.Scale(new SizeF(0.9f,0.9f));//(1.0f / 1.1f, 1.0f / 1.1f));//(1.0f + (1.0f - 1.1f), 1.0f + (1.0f - 1.1f)));//
+                this.Scale(new SizeF(0.9f, 0.9f));//(1.0f / 1.1f, 1.0f / 1.1f));//(1.0f + (1.0f - 1.1f), 1.0f + (1.0f - 1.1f)));//
                 //label17.Text = this.Size.ToString();
             }
         }
@@ -587,10 +866,10 @@ namespace MillionLE
 
             DialogResult result1 = DialogResult.No;
 
-            //handle language
-            if (language == "arabic")
+            //handle helper.Language
+            if (helper.Language == "arabic")
                 result1 = MessageBox.Show("حجم الشاشة مع اللعبة مظبوط؟", "ايه رأيك؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            else if (language == "english")
+            else if (helper.Language == "english")
                 result1 = MessageBox.Show("The game fits the screen?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             //do nothing if 'yes' choosed
             if (result1 == DialogResult.No)
@@ -684,13 +963,13 @@ namespace MillionLE
             choice4d_btn.BackColor = Color.Transparent;
             //generate random question id(row number)
             do
-            {                                                  //Easy ,  Med  , Hard
-                row = random.Next(Difficulty - 20, Difficulty);//1:15 , 11:25 , 16:30
-            } while (row_values.Contains(row));//if it's repeated question then change it
-            correct_answer = dataSet.Tables[0].Rows[row][1].ToString();//the correct choice is always in column1
+            {
+                row = random.Next(0, 30);
+            } while (row_values.Contains(row));//if it's repeated question then don't take it(repeat until we find unrepeated question)
+            correct_answer = dataSet.Tables[sheet_index].Rows[row][1].ToString();//the correct choice is always in column1
             row_values.Add(row);//memorize choosen question to eliminate repeatition
             //end of questions
-            if (row > dataSet.Tables[0].Rows.Count || money_index == money.Length - 1)
+            if (row > dataSet.Tables[sheet_index].Rows.Count || money_index == money.Length - 1)
             {
                 //won the million
                 await Task.Delay(1000); // Wait for 1 seconds
@@ -720,7 +999,7 @@ namespace MillionLE
                     ShowDataForm dataForm = (ShowDataForm)Application.OpenForms["ShowDataForm"];
                     dataForm.Close();
                 }
-                ResultForm resultForm = new ResultForm(language, helper, money[money_index], money_index, num_of_questions, Difficulty);
+                ResultForm resultForm = new ResultForm(helper, money[money_index], money_index, num_of_questions);
                 money_index = 0;
                 Close();
                 resultForm.ShowDialog();
@@ -732,38 +1011,50 @@ namespace MillionLE
                 player = new SoundPlayer(Properties.Resources.thinking);
                 player.PlayLooping();
             }
-            Question_txt.Text = dataSet.Tables[0].Rows[row][0].ToString();
-            if (language == "arabic")
+
+            Question_txt.Text = dataSet.Tables[sheet_index].Rows[row][0].ToString();
+            if (helper.Language == "arabic")
             {
                 choice1a_btn.RightToLeft = RightToLeft.Yes;
                 choice2b_btn.RightToLeft = RightToLeft.Yes;
                 choice3c_btn.RightToLeft = RightToLeft.Yes;
                 choice4d_btn.RightToLeft = RightToLeft.Yes;
                 GenerateRandomChoices(out choice1, out choice2, out choice3, out choice4);
-                choice1a_btn.Text = "أ-" + dataSet.Tables[0].Rows[row][choice1].ToString();
-                choice2b_btn.Text = "ب-" + dataSet.Tables[0].Rows[row][choice2].ToString();
-                choice3c_btn.Text = "ج-" + dataSet.Tables[0].Rows[row][choice3].ToString();
-                choice4d_btn.Text = "د-" + dataSet.Tables[0].Rows[row][choice4].ToString();
+                choice1a_btn.Text = "أ-" + dataSet.Tables[sheet_index].Rows[row][choice1].ToString();
+                choice2b_btn.Text = "ب-" + dataSet.Tables[sheet_index].Rows[row][choice2].ToString();
+                choice3c_btn.Text = "ج-" + dataSet.Tables[sheet_index].Rows[row][choice3].ToString();
+                choice4d_btn.Text = "د-" + dataSet.Tables[sheet_index].Rows[row][choice4].ToString();
             }
-            else if (language == "english")
+            else if (helper.Language == "english")
             {
                 choice1a_btn.RightToLeft = RightToLeft.No;
                 choice2b_btn.RightToLeft = RightToLeft.No;
                 choice3c_btn.RightToLeft = RightToLeft.No;
                 choice4d_btn.RightToLeft = RightToLeft.No;
                 GenerateRandomChoices(out choice1, out choice2, out choice3, out choice4);
-                choice1a_btn.Text = "a-" + dataSet.Tables[0].Rows[row][choice1].ToString();
-                choice2b_btn.Text = "b-" + dataSet.Tables[0].Rows[row][choice2].ToString();
-                choice3c_btn.Text = "c-" + dataSet.Tables[0].Rows[row][choice3].ToString();
-                choice4d_btn.Text = "d-" + dataSet.Tables[0].Rows[row][choice4].ToString();
+                choice1a_btn.Text = "a-" + dataSet.Tables[sheet_index].Rows[row][choice1].ToString();
+                choice2b_btn.Text = "b-" + dataSet.Tables[sheet_index].Rows[row][choice2].ToString();
+                choice3c_btn.Text = "c-" + dataSet.Tables[sheet_index].Rows[row][choice3].ToString();
+                choice4d_btn.Text = "d-" + dataSet.Tables[sheet_index].Rows[row][choice4].ToString();
             }
             //enable all choices buttons after 2 of them are disabled by 50:50 button
-            if (help50_used == 1)
+            if (helper.IsHelp50Used)
             {
                 choice1a_btn.Enabled = true; choice2b_btn.Enabled = true; choice3c_btn.Enabled = true; choice4d_btn.Enabled = true;
-                help50_used = 0;
+                helper.IsHelp50Used = false;
             }
-            this.Enabled = true;
+            //this.Enabled = true;
+            choice1a_btn.Enabled = true;
+            choice2b_btn.Enabled = true;
+            choice3c_btn.Enabled = true;
+            choice4d_btn.Enabled = true;
+            //Exit_btn.Enabled = true;
+            Leave_btn.Enabled = true;
+            withdraw_btn.Enabled = true;
+            help_50_50_btn.Enabled = true;
+            people_help_btn.Enabled = true;
+            help_call_btn.Enabled = true;
+            Help_Show_All_btn.Enabled = true;
             people_chart.Hide();
             money_label.Hide();
             money_panel20.Hide();
@@ -1203,41 +1494,6 @@ namespace MillionLE
             }
         }
 
-        private int[] GenerateRandomVotesWithSomeReliability()
-        {
-            Random random = new Random();
-            int[] votes = new int[4];
-            for (int i = 0; i < votes.Length; i++)
-            {
-                votes[i] = random.Next(1, 80);
-            }
-            //if help 50:50 used first
-            if (help50_used == 1)
-            {
-                votes[deleted_chice1 - 1] = 0;
-                votes[deleted_chice2 - 1] = 0;
-            }
-            //add some reliability to people opinion
-            if (choice1a_btn.Text != "" && correct_answer == choice1a_btn.Text.Substring(2))//1st buttton is correct => increase votes of 1st choice
-            {
-                votes[0] += 16;
-            }
-            else if (choice2b_btn.Text != "" && correct_answer == choice2b_btn.Text.Substring(2))//2nd buttton is correct => increase votes of 2nd choice
-            {
-                votes[1] += 16;
-            }
-            else if (choice3c_btn.Text != "" && correct_answer == choice3c_btn.Text.Substring(2))//3rd buttton is correct => increase votes of 3rd choice
-            {
-                votes[2] += 16;
-            }
-            else if (choice4d_btn.Text != "" && correct_answer == choice4d_btn.Text.Substring(2))//4th buttton is correct => increase votes of 4th choice
-            {
-                votes[3] += 16;
-            }
-
-            return votes;
-        }
-
         public static void GenerateRandomChoices(out int choice1, out int choice2, out int choice3, out int choice4)
         {
             Random random = new Random();
@@ -1288,6 +1544,7 @@ namespace MillionLE
             }
             Show_Money_Panel(flag);
         }
+
         private async void Show_Money_Panel(bool flag)
         {
             if (flag)

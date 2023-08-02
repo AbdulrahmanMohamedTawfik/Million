@@ -16,6 +16,7 @@ namespace MillionLE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.DoEvents();
             Application.Run(new MainForm());
         }
     }

@@ -278,18 +278,18 @@ namespace MillionLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream call_friend_30sec_counter {
+        internal static System.IO.UnmanagedMemoryStream call_friend_counter {
             get {
-                return ResourceManager.GetStream("call_friend_30sec_counter", resourceCulture);
+                return ResourceManager.GetStream("call_friend_counter", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream clap {
+        internal static System.IO.UnmanagedMemoryStream call_friend_intro {
             get {
-                return ResourceManager.GetStream("clap", resourceCulture);
+                return ResourceManager.GetStream("call_friend_intro", resourceCulture);
             }
         }
         
@@ -314,6 +314,15 @@ namespace MillionLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Credits {
+            get {
+                return ResourceManager.GetStream("Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream End {
             get {
                 return ResourceManager.GetStream("End", resourceCulture);
@@ -323,18 +332,27 @@ namespace MillionLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream help_50_50 {
+        internal static System.IO.UnmanagedMemoryStream fireworks {
             get {
-                return ResourceManager.GetStream("help_50_50", resourceCulture);
+                return ResourceManager.GetStream("fireworks", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream intro {
+        internal static System.IO.UnmanagedMemoryStream hello_and_question1 {
             get {
-                return ResourceManager.GetStream("intro", resourceCulture);
+                return ResourceManager.GetStream("hello_and_question1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream help_50_50 {
+            get {
+                return ResourceManager.GetStream("help_50_50", resourceCulture);
             }
         }
         
@@ -364,6 +382,15 @@ namespace MillionLE.Properties {
             get {
                 object obj = ResourceManager.GetObject("sound_on", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream start_music {
+            get {
+                return ResourceManager.GetStream("start_music", resourceCulture);
             }
         }
         

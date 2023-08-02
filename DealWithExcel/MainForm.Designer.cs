@@ -42,11 +42,13 @@
             this.Exit_btn = new System.Windows.Forms.Button();
             this.Sound_btn = new System.Windows.Forms.Button();
             this.Intro_btn = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.Count10pictureBox = new System.Windows.Forms.PictureBox();
             this.difficulty_groupBox.SuspendLayout();
             this.lang_groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ar_pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.en_pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Count10pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // Start_btn
@@ -61,11 +63,13 @@
             this.Start_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Start_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Start_btn.ForeColor = System.Drawing.Color.Transparent;
-            this.Start_btn.Location = new System.Drawing.Point(392, 284);
+            this.Start_btn.Location = new System.Drawing.Point(504, 399);
             this.Start_btn.Name = "Start_btn";
-            this.Start_btn.Size = new System.Drawing.Size(196, 67);
+            this.Start_btn.Size = new System.Drawing.Size(266, 60);
             this.Start_btn.TabIndex = 0;
+            this.Start_btn.TabStop = false;
             this.Start_btn.Text = "Start";
+            this.Start_btn.UseMnemonic = false;
             this.Start_btn.UseVisualStyleBackColor = false;
             this.Start_btn.Click += new System.EventHandler(this.Start_btn_Click);
             // 
@@ -74,7 +78,7 @@
             this.easy_rad_btn.AutoSize = true;
             this.easy_rad_btn.BackColor = System.Drawing.Color.Transparent;
             this.easy_rad_btn.ForeColor = System.Drawing.Color.LightGreen;
-            this.easy_rad_btn.Location = new System.Drawing.Point(67, 50);
+            this.easy_rad_btn.Location = new System.Drawing.Point(55, 84);
             this.easy_rad_btn.Name = "easy_rad_btn";
             this.easy_rad_btn.Size = new System.Drawing.Size(102, 40);
             this.easy_rad_btn.TabIndex = 1;
@@ -87,7 +91,7 @@
             // 
             this.med_rad_btn.AutoSize = true;
             this.med_rad_btn.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.med_rad_btn.Location = new System.Drawing.Point(185, 50);
+            this.med_rad_btn.Location = new System.Drawing.Point(220, 84);
             this.med_rad_btn.Name = "med_rad_btn";
             this.med_rad_btn.Size = new System.Drawing.Size(141, 40);
             this.med_rad_btn.TabIndex = 2;
@@ -100,7 +104,7 @@
             // 
             this.hard_rad_btn.AutoSize = true;
             this.hard_rad_btn.ForeColor = System.Drawing.Color.LightCoral;
-            this.hard_rad_btn.Location = new System.Drawing.Point(344, 50);
+            this.hard_rad_btn.Location = new System.Drawing.Point(425, 84);
             this.hard_rad_btn.Name = "hard_rad_btn";
             this.hard_rad_btn.Size = new System.Drawing.Size(100, 40);
             this.hard_rad_btn.TabIndex = 3;
@@ -112,16 +116,16 @@
             // difficulty_groupBox
             // 
             this.difficulty_groupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.difficulty_groupBox.BackColor = System.Drawing.Color.MidnightBlue;
+            this.difficulty_groupBox.BackColor = System.Drawing.Color.Transparent;
             this.difficulty_groupBox.Controls.Add(this.hard_rad_btn);
             this.difficulty_groupBox.Controls.Add(this.easy_rad_btn);
             this.difficulty_groupBox.Controls.Add(this.med_rad_btn);
             this.difficulty_groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.difficulty_groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.difficulty_groupBox.ForeColor = System.Drawing.Color.White;
-            this.difficulty_groupBox.Location = new System.Drawing.Point(207, 105);
+            this.difficulty_groupBox.Location = new System.Drawing.Point(306, 190);
             this.difficulty_groupBox.Name = "difficulty_groupBox";
-            this.difficulty_groupBox.Size = new System.Drawing.Size(636, 164);
+            this.difficulty_groupBox.Size = new System.Drawing.Size(706, 178);
             this.difficulty_groupBox.TabIndex = 4;
             this.difficulty_groupBox.TabStop = false;
             this.difficulty_groupBox.Text = "Choose Difficulty:";
@@ -136,9 +140,9 @@
             this.lang_groupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lang_groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lang_groupBox.ForeColor = System.Drawing.Color.White;
-            this.lang_groupBox.Location = new System.Drawing.Point(363, 410);
+            this.lang_groupBox.Location = new System.Drawing.Point(485, 521);
             this.lang_groupBox.Name = "lang_groupBox";
-            this.lang_groupBox.Size = new System.Drawing.Size(255, 127);
+            this.lang_groupBox.Size = new System.Drawing.Size(285, 163);
             this.lang_groupBox.TabIndex = 7;
             this.lang_groupBox.TabStop = false;
             this.lang_groupBox.Text = "Language";
@@ -147,9 +151,9 @@
             // 
             this.ar_pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ar_pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("ar_pictureBox.Image")));
-            this.ar_pictureBox.Location = new System.Drawing.Point(127, 35);
+            this.ar_pictureBox.Location = new System.Drawing.Point(147, 52);
             this.ar_pictureBox.Name = "ar_pictureBox";
-            this.ar_pictureBox.Size = new System.Drawing.Size(33, 21);
+            this.ar_pictureBox.Size = new System.Drawing.Size(47, 29);
             this.ar_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ar_pictureBox.TabIndex = 3;
             this.ar_pictureBox.TabStop = false;
@@ -158,9 +162,9 @@
             // 
             this.en_pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.en_pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("en_pictureBox.Image")));
-            this.en_pictureBox.Location = new System.Drawing.Point(146, 78);
+            this.en_pictureBox.Location = new System.Drawing.Point(167, 112);
             this.en_pictureBox.Name = "en_pictureBox";
-            this.en_pictureBox.Size = new System.Drawing.Size(33, 20);
+            this.en_pictureBox.Size = new System.Drawing.Size(47, 29);
             this.en_pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.en_pictureBox.TabIndex = 2;
             this.en_pictureBox.TabStop = false;
@@ -168,9 +172,9 @@
             // ar_radioButton
             // 
             this.ar_radioButton.ForeColor = System.Drawing.Color.White;
-            this.ar_radioButton.Location = new System.Drawing.Point(53, 25);
+            this.ar_radioButton.Location = new System.Drawing.Point(73, 40);
             this.ar_radioButton.Name = "ar_radioButton";
-            this.ar_radioButton.Size = new System.Drawing.Size(107, 38);
+            this.ar_radioButton.Size = new System.Drawing.Size(141, 46);
             this.ar_radioButton.TabIndex = 1;
             this.ar_radioButton.TabStop = true;
             this.ar_radioButton.Text = "العربية";
@@ -180,9 +184,9 @@
             // en_radioButton
             // 
             this.en_radioButton.ForeColor = System.Drawing.Color.White;
-            this.en_radioButton.Location = new System.Drawing.Point(53, 69);
+            this.en_radioButton.Location = new System.Drawing.Point(73, 106);
             this.en_radioButton.Name = "en_radioButton";
-            this.en_radioButton.Size = new System.Drawing.Size(107, 38);
+            this.en_radioButton.Size = new System.Drawing.Size(141, 38);
             this.en_radioButton.TabIndex = 0;
             this.en_radioButton.TabStop = true;
             this.en_radioButton.Text = "English";
@@ -231,7 +235,7 @@
             this.Intro_btn.BackColor = System.Drawing.Color.Transparent;
             this.Intro_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Intro_btn.ForeColor = System.Drawing.Color.White;
-            this.Intro_btn.Location = new System.Drawing.Point(12, 548);
+            this.Intro_btn.Location = new System.Drawing.Point(12, 678);
             this.Intro_btn.Name = "Intro_btn";
             this.Intro_btn.Size = new System.Drawing.Size(109, 34);
             this.Intro_btn.TabIndex = 35;
@@ -239,25 +243,37 @@
             this.Intro_btn.UseVisualStyleBackColor = false;
             this.Intro_btn.Click += new System.EventHandler(this.Intro_btn_Click);
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.progressBar1.ForeColor = System.Drawing.Color.White;
-            this.progressBar1.Location = new System.Drawing.Point(392, 357);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(196, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 36;
+            this.progressBar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.progressBar.ForeColor = System.Drawing.Color.White;
+            this.progressBar.Location = new System.Drawing.Point(504, 465);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(266, 33);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.TabIndex = 36;
+            // 
+            // Count10pictureBox
+            // 
+            this.Count10pictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Count10pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.Count10pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("Count10pictureBox.Image")));
+            this.Count10pictureBox.Location = new System.Drawing.Point(525, 20);
+            this.Count10pictureBox.Name = "Count10pictureBox";
+            this.Count10pictureBox.Size = new System.Drawing.Size(245, 164);
+            this.Count10pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Count10pictureBox.TabIndex = 90;
+            this.Count10pictureBox.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(967, 594);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(1231, 724);
+            this.Controls.Add(this.Count10pictureBox);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.Intro_btn);
             this.Controls.Add(this.Sound_btn);
             this.Controls.Add(this.Exit_btn);
@@ -277,13 +293,12 @@
             this.lang_groupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ar_pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.en_pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Count10pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Start_btn;
         private System.Windows.Forms.RadioButton easy_rad_btn;
         private System.Windows.Forms.RadioButton med_rad_btn;
         private System.Windows.Forms.RadioButton hard_rad_btn;
@@ -296,6 +311,8 @@
         private System.Windows.Forms.Button Exit_btn;
         private System.Windows.Forms.Button Sound_btn;
         private System.Windows.Forms.Button Intro_btn;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.PictureBox Count10pictureBox;
+        private System.Windows.Forms.Button Start_btn;
     }
 }

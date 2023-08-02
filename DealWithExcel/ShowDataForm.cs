@@ -10,19 +10,21 @@ namespace MillionLE
     public partial class ShowDataForm : Form
     {
         private string language;
-        public ShowDataForm(string lang)
+        private int sheet_index = 0;
+        public ShowDataForm(string lang, int sheet_i)
         {
             InitializeComponent();
             language = lang;
+            sheet_index = sheet_i;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             //form appears in left half
             Rectangle screenRectangle = Screen.PrimaryScreen.WorkingArea;
-            int leftHalfWidth = screenRectangle.Width / 2 ;
+            int leftHalfWidth = screenRectangle.Width / 2;
             this.Location = new Point(screenRectangle.Left, screenRectangle.Top);
-            this.Size = new Size(leftHalfWidth-120, screenRectangle.Height);
+            this.Size = new Size(leftHalfWidth - 120, screenRectangle.Height);
             //handle language
             dataGridView1.Columns.Clear();
             if (language == "arabic")
@@ -50,7 +52,7 @@ namespace MillionLE
                 using (var reader = ExcelReaderFactory.CreateReader(stream, new ExcelReaderConfiguration { Password = "iwonmillion" }))
                 {
                     DataSet dataSet = reader.AsDataSet();
-                    DataTable dataTable = dataSet.Tables[0];
+                    DataTable dataTable = dataSet.Tables[sheet_index];
                     foreach (DataRow row in dataTable.Rows)
                     {
                         string column1Value = row["Column0"].ToString();

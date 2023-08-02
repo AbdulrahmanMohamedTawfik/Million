@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.people_chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Zoom_in_btn = new System.Windows.Forms.Button();
@@ -78,11 +78,13 @@
             this.Exit_btn = new System.Windows.Forms.Button();
             this.Sound_btn = new System.Windows.Forms.Button();
             this.Leave_btn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.people_chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Count10pictureBox)).BeginInit();
             this.money_panel80.SuspendLayout();
             this.money_values_panel.SuspendLayout();
             this.question_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // people_chart
@@ -99,67 +101,67 @@
             this.people_chart.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             this.people_chart.BorderSkin.BorderWidth = 0;
             this.people_chart.BorderSkin.PageColor = System.Drawing.Color.Transparent;
-            chartArea2.Area3DStyle.Enable3D = true;
-            chartArea2.Area3DStyle.IsRightAngleAxes = false;
-            chartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea2.Area3DStyle.PointGapDepth = 10;
-            chartArea2.Area3DStyle.Rotation = 15;
-            chartArea2.Area3DStyle.WallWidth = 8;
-            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.MinorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.MajorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.MinorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.ScaleBreakStyle.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisX2.TitleForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY.ScrollBar.LineColor = System.Drawing.Color.White;
-            chartArea2.AxisY2.LineColor = System.Drawing.Color.White;
-            chartArea2.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea2.BorderColor = System.Drawing.Color.White;
-            chartArea2.BorderWidth = 0;
-            chartArea2.CursorX.LineColor = System.Drawing.Color.White;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.ShadowColor = System.Drawing.Color.White;
-            this.people_chart.ChartAreas.Add(chartArea2);
-            legend2.BackColor = System.Drawing.Color.Transparent;
-            legend2.ForeColor = System.Drawing.Color.White;
-            legend2.HeaderSeparatorColor = System.Drawing.Color.White;
-            legend2.ItemColumnSeparatorColor = System.Drawing.Color.White;
-            legend2.Name = "Legend1";
-            legend2.TitleForeColor = System.Drawing.Color.White;
-            legend2.TitleSeparatorColor = System.Drawing.Color.White;
-            this.people_chart.Legends.Add(legend2);
+            chartArea3.Area3DStyle.Enable3D = true;
+            chartArea3.Area3DStyle.IsRightAngleAxes = false;
+            chartArea3.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea3.Area3DStyle.PointGapDepth = 10;
+            chartArea3.Area3DStyle.Rotation = 15;
+            chartArea3.Area3DStyle.WallWidth = 8;
+            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.MinorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.ScaleBreakStyle.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.MajorGrid.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.MinorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.ScaleBreakStyle.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.TitleForeColor = System.Drawing.Color.White;
+            chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.White;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisY.MinorGrid.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisY.MinorTickMark.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisY.ScrollBar.LineColor = System.Drawing.Color.White;
+            chartArea3.AxisY2.LineColor = System.Drawing.Color.White;
+            chartArea3.BackColor = System.Drawing.Color.Transparent;
+            chartArea3.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea3.BorderColor = System.Drawing.Color.White;
+            chartArea3.BorderWidth = 0;
+            chartArea3.CursorX.LineColor = System.Drawing.Color.White;
+            chartArea3.Name = "ChartArea1";
+            chartArea3.ShadowColor = System.Drawing.Color.White;
+            this.people_chart.ChartAreas.Add(chartArea3);
+            legend3.BackColor = System.Drawing.Color.Transparent;
+            legend3.ForeColor = System.Drawing.Color.White;
+            legend3.HeaderSeparatorColor = System.Drawing.Color.White;
+            legend3.ItemColumnSeparatorColor = System.Drawing.Color.White;
+            legend3.Name = "Legend1";
+            legend3.TitleForeColor = System.Drawing.Color.White;
+            legend3.TitleSeparatorColor = System.Drawing.Color.White;
+            this.people_chart.Legends.Add(legend3);
             this.people_chart.Location = new System.Drawing.Point(355, 122);
             this.people_chart.Name = "people_chart";
-            series2.BackSecondaryColor = System.Drawing.Color.White;
-            series2.BorderColor = System.Drawing.Color.White;
-            series2.BorderWidth = 0;
-            series2.ChartArea = "ChartArea1";
-            series2.Color = System.Drawing.Color.RoyalBlue;
-            series2.LabelBackColor = System.Drawing.Color.Transparent;
-            series2.LabelBorderColor = System.Drawing.Color.Transparent;
-            series2.LabelForeColor = System.Drawing.Color.Transparent;
-            series2.Legend = "Legend1";
-            series2.MarkerColor = System.Drawing.Color.White;
-            series2.Name = "series1";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-            this.people_chart.Series.Add(series2);
+            series3.BackSecondaryColor = System.Drawing.Color.White;
+            series3.BorderColor = System.Drawing.Color.White;
+            series3.BorderWidth = 0;
+            series3.ChartArea = "ChartArea1";
+            series3.Color = System.Drawing.Color.RoyalBlue;
+            series3.LabelBackColor = System.Drawing.Color.Transparent;
+            series3.LabelBorderColor = System.Drawing.Color.Transparent;
+            series3.LabelForeColor = System.Drawing.Color.Transparent;
+            series3.Legend = "Legend1";
+            series3.MarkerColor = System.Drawing.Color.White;
+            series3.Name = "series1";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            this.people_chart.Series.Add(series3);
             this.people_chart.Size = new System.Drawing.Size(280, 180);
             this.people_chart.TabIndex = 71;
             // 
@@ -170,10 +172,11 @@
             this.Zoom_in_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Zoom_in_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Zoom_in_btn.ForeColor = System.Drawing.Color.White;
-            this.Zoom_in_btn.Location = new System.Drawing.Point(40, 589);
+            this.Zoom_in_btn.Location = new System.Drawing.Point(40, 624);
             this.Zoom_in_btn.Name = "Zoom_in_btn";
             this.Zoom_in_btn.Size = new System.Drawing.Size(43, 32);
             this.Zoom_in_btn.TabIndex = 80;
+            this.Zoom_in_btn.TabStop = false;
             this.Zoom_in_btn.Text = "+";
             this.Zoom_in_btn.UseVisualStyleBackColor = false;
             this.Zoom_in_btn.Click += new System.EventHandler(this.Zoom_in_btn_Click);
@@ -185,10 +188,11 @@
             this.Zoom_out_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Zoom_out_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Zoom_out_btn.ForeColor = System.Drawing.Color.White;
-            this.Zoom_out_btn.Location = new System.Drawing.Point(94, 589);
+            this.Zoom_out_btn.Location = new System.Drawing.Point(94, 624);
             this.Zoom_out_btn.Name = "Zoom_out_btn";
             this.Zoom_out_btn.Size = new System.Drawing.Size(43, 32);
             this.Zoom_out_btn.TabIndex = 81;
+            this.Zoom_out_btn.TabStop = false;
             this.Zoom_out_btn.Text = "-";
             this.Zoom_out_btn.UseVisualStyleBackColor = false;
             this.Zoom_out_btn.Click += new System.EventHandler(this.Zoom_out_btn_Click);
@@ -200,7 +204,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.Control;
-            this.label17.Location = new System.Drawing.Point(65, 558);
+            this.label17.Location = new System.Drawing.Point(65, 593);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(47, 28);
             this.label17.TabIndex = 4;
@@ -233,6 +237,7 @@
             this.X_Help_Show_All_btn.Name = "X_Help_Show_All_btn";
             this.X_Help_Show_All_btn.Size = new System.Drawing.Size(136, 67);
             this.X_Help_Show_All_btn.TabIndex = 88;
+            this.X_Help_Show_All_btn.TabStop = false;
             this.X_Help_Show_All_btn.UseVisualStyleBackColor = false;
             // 
             // Help_Show_All_btn
@@ -251,6 +256,7 @@
             this.Help_Show_All_btn.Name = "Help_Show_All_btn";
             this.Help_Show_All_btn.Size = new System.Drawing.Size(136, 67);
             this.Help_Show_All_btn.TabIndex = 87;
+            this.Help_Show_All_btn.TabStop = false;
             this.Help_Show_All_btn.UseVisualStyleBackColor = false;
             this.Help_Show_All_btn.Click += new System.EventHandler(this.Help_Show_All_btn_Click);
             this.Help_Show_All_btn.MouseHover += new System.EventHandler(this.Help_Show_All_btn_MouseHover);
@@ -372,7 +378,6 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.AutoEllipsis = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
@@ -389,7 +394,6 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoEllipsis = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
@@ -406,7 +410,6 @@
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoEllipsis = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
@@ -423,7 +426,6 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoEllipsis = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
@@ -440,7 +442,6 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.AutoEllipsis = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
@@ -457,7 +458,6 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoEllipsis = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
@@ -474,7 +474,6 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoEllipsis = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
@@ -491,7 +490,6 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoEllipsis = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
@@ -508,7 +506,6 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoEllipsis = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
@@ -525,7 +522,6 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoEllipsis = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
@@ -542,7 +538,6 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoEllipsis = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
@@ -559,7 +554,6 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoEllipsis = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
@@ -576,7 +570,6 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoEllipsis = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
@@ -593,7 +586,6 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoEllipsis = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
@@ -610,7 +602,6 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoEllipsis = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
@@ -634,10 +625,11 @@
             this.withdraw_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.withdraw_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.withdraw_btn.ForeColor = System.Drawing.Color.White;
-            this.withdraw_btn.Location = new System.Drawing.Point(474, 566);
+            this.withdraw_btn.Location = new System.Drawing.Point(423, 614);
             this.withdraw_btn.Name = "withdraw_btn";
             this.withdraw_btn.Size = new System.Drawing.Size(93, 55);
             this.withdraw_btn.TabIndex = 77;
+            this.withdraw_btn.TabStop = false;
             this.withdraw_btn.Text = "withdraw";
             this.withdraw_btn.UseVisualStyleBackColor = false;
             this.withdraw_btn.Click += new System.EventHandler(this.Withdraw_btn_Click);
@@ -654,10 +646,11 @@
             this.choice4d_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice4d_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice4d_btn.ForeColor = System.Drawing.Color.White;
-            this.choice4d_btn.Location = new System.Drawing.Point(510, 505);
+            this.choice4d_btn.Location = new System.Drawing.Point(474, 517);
             this.choice4d_btn.Name = "choice4d_btn";
-            this.choice4d_btn.Size = new System.Drawing.Size(302, 55);
+            this.choice4d_btn.Size = new System.Drawing.Size(390, 70);
             this.choice4d_btn.TabIndex = 76;
+            this.choice4d_btn.TabStop = false;
             this.choice4d_btn.Text = "Choice 4";
             this.choice4d_btn.UseVisualStyleBackColor = false;
             this.choice4d_btn.Click += new System.EventHandler(this.Choice4d_btn_Click);
@@ -674,10 +667,11 @@
             this.choice3c_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice3c_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice3c_btn.ForeColor = System.Drawing.Color.White;
-            this.choice3c_btn.Location = new System.Drawing.Point(202, 505);
+            this.choice3c_btn.Location = new System.Drawing.Point(78, 517);
             this.choice3c_btn.Name = "choice3c_btn";
-            this.choice3c_btn.Size = new System.Drawing.Size(302, 55);
+            this.choice3c_btn.Size = new System.Drawing.Size(390, 70);
             this.choice3c_btn.TabIndex = 75;
+            this.choice3c_btn.TabStop = false;
             this.choice3c_btn.Text = "Choice 3";
             this.choice3c_btn.UseVisualStyleBackColor = false;
             this.choice3c_btn.Click += new System.EventHandler(this.Choice3c_btn_Click);
@@ -694,10 +688,11 @@
             this.choice2b_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice2b_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice2b_btn.ForeColor = System.Drawing.Color.White;
-            this.choice2b_btn.Location = new System.Drawing.Point(510, 444);
+            this.choice2b_btn.Location = new System.Drawing.Point(474, 440);
             this.choice2b_btn.Name = "choice2b_btn";
-            this.choice2b_btn.Size = new System.Drawing.Size(302, 55);
+            this.choice2b_btn.Size = new System.Drawing.Size(390, 70);
             this.choice2b_btn.TabIndex = 74;
+            this.choice2b_btn.TabStop = false;
             this.choice2b_btn.Text = "Choice 2";
             this.choice2b_btn.UseVisualStyleBackColor = false;
             this.choice2b_btn.Click += new System.EventHandler(this.Choice2b_btn_Click);
@@ -714,10 +709,11 @@
             this.choice1a_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choice1a_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.choice1a_btn.ForeColor = System.Drawing.Color.White;
-            this.choice1a_btn.Location = new System.Drawing.Point(202, 444);
+            this.choice1a_btn.Location = new System.Drawing.Point(78, 440);
             this.choice1a_btn.Name = "choice1a_btn";
-            this.choice1a_btn.Size = new System.Drawing.Size(302, 55);
+            this.choice1a_btn.Size = new System.Drawing.Size(390, 70);
             this.choice1a_btn.TabIndex = 73;
+            this.choice1a_btn.TabStop = false;
             this.choice1a_btn.Text = "Choice 1";
             this.choice1a_btn.UseVisualStyleBackColor = false;
             this.choice1a_btn.Click += new System.EventHandler(this.Choice1a_btn_Click);
@@ -760,6 +756,7 @@
             this.x_help_call_btn.Name = "x_help_call_btn";
             this.x_help_call_btn.Size = new System.Drawing.Size(136, 67);
             this.x_help_call_btn.TabIndex = 65;
+            this.x_help_call_btn.TabStop = false;
             this.x_help_call_btn.UseVisualStyleBackColor = false;
             // 
             // people_help_btn
@@ -778,6 +775,7 @@
             this.people_help_btn.Name = "people_help_btn";
             this.people_help_btn.Size = new System.Drawing.Size(136, 67);
             this.people_help_btn.TabIndex = 64;
+            this.people_help_btn.TabStop = false;
             this.people_help_btn.UseVisualStyleBackColor = false;
             this.people_help_btn.Click += new System.EventHandler(this.People_help_btn_Click);
             // 
@@ -795,6 +793,7 @@
             this.x_people_help_btn.Name = "x_people_help_btn";
             this.x_people_help_btn.Size = new System.Drawing.Size(136, 67);
             this.x_people_help_btn.TabIndex = 63;
+            this.x_people_help_btn.TabStop = false;
             this.x_people_help_btn.UseVisualStyleBackColor = false;
             // 
             // help_call_btn
@@ -813,6 +812,7 @@
             this.help_call_btn.Name = "help_call_btn";
             this.help_call_btn.Size = new System.Drawing.Size(136, 67);
             this.help_call_btn.TabIndex = 62;
+            this.help_call_btn.TabStop = false;
             this.help_call_btn.UseVisualStyleBackColor = false;
             this.help_call_btn.Click += new System.EventHandler(this.Help_Call_Friend_btn_Click);
             // 
@@ -832,6 +832,7 @@
             this.help_50_50_btn.Name = "help_50_50_btn";
             this.help_50_50_btn.Size = new System.Drawing.Size(136, 67);
             this.help_50_50_btn.TabIndex = 60;
+            this.help_50_50_btn.TabStop = false;
             this.help_50_50_btn.Text = "50 : 50";
             this.help_50_50_btn.UseVisualStyleBackColor = false;
             this.help_50_50_btn.Click += new System.EventHandler(this.Help_50_50_btn_Click);
@@ -850,6 +851,7 @@
             this.x_50_50_btn.Name = "x_50_50_btn";
             this.x_50_50_btn.Size = new System.Drawing.Size(136, 67);
             this.x_50_50_btn.TabIndex = 61;
+            this.x_50_50_btn.TabStop = false;
             this.x_50_50_btn.Text = "50 : 50";
             this.x_50_50_btn.UseVisualStyleBackColor = false;
             // 
@@ -909,6 +911,18 @@
             this.Leave_btn.UseVisualStyleBackColor = false;
             this.Leave_btn.Click += new System.EventHandler(this.Leave_btn_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(440, 488);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(66, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 90;
+            this.pictureBox1.TabStop = false;
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -916,6 +930,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1152, 687);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Count10pictureBox);
             this.Controls.Add(this.X_Help_Show_All_btn);
             this.Controls.Add(this.Help_Show_All_btn);
@@ -957,6 +972,7 @@
             this.money_panel80.ResumeLayout(false);
             this.money_values_panel.ResumeLayout(false);
             this.question_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1010,6 +1026,7 @@
         private System.Windows.Forms.Button X_Help_Show_All_btn;
         private System.Windows.Forms.Button Help_Show_All_btn;
         private System.Windows.Forms.PictureBox Count10pictureBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
