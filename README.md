@@ -2,9 +2,9 @@
 <br>
 <p dir="rtl">لعبة محدثة تشبه لعبة من سيربح المليون القديمة ولكن بإمكانيات اكبر و متعة لعب اكثر.</p>
 <br>
-لغة البرمجة : C#
+<p dir="rtl">لغة البرمجة : C#</p>
 <br>
-بيئة التطوير: .net framework
+<p dir="rtl">بيئة التطوير: .net framework</p>
 <br>
 <h1>Who will win the Million LE</h1>
 <br>
