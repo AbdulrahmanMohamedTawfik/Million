@@ -79,24 +79,26 @@ namespace MillionLE
         //Loading() instead of Form1_Load() because opening encyrepted excel file taking time and it make form shows empty for a moment
         private void Loading()
         {
-            //generate 1st quetion
-            row = random.Next(0, 30);
-            row_values.Clear();//start new memorization
-            row_values.Add(row);//memorize choosen question to eliminate repeatition
-            //choose sheet based on helper.Difficulty
+            //generate 1st quetion 
+            //choose sheet based on Difficulty
+            //choose question row(number of questions differs)
             switch (helper.Difficulty)
             {
                 case "Easy":
                     sheet_index = 0;
+                    row = random.Next(0, 233);//number of questions is 233
                     break;
                 case "Medium":
                     sheet_index = 1;
+                    row = random.Next(0, 371);//number of questions is 371
                     break;
                 case "Hard":
                     sheet_index = 2;
+                    row = random.Next(0, 240);//number of questions is 240
                     break;
             }
-            //handling helper.Language
+
+            //handling Language
             if (helper.Language == "arabic")
             {
                 Question_txt.RightToLeft = RightToLeft.Yes;
@@ -106,10 +108,9 @@ namespace MillionLE
                 choice3c_btn.RightToLeft = RightToLeft.Yes;
                 choice4d_btn.RightToLeft = RightToLeft.Yes;
                 money_values_panel.RightToLeft = RightToLeft.Yes;
-                //Help_Show_All_btn. = "رؤية كل الاسئلة";
+
                 withdraw_btn.Text = "انسحاب";
                 //read data
-
                 dataSet = reader.AsDataSet();
                 //generate QA text
                 Question_txt.Text = dataSet.Tables[sheet_index].Rows[row][0].ToString();//all questions at column 0
@@ -129,7 +130,7 @@ namespace MillionLE
                 choice3c_btn.RightToLeft = RightToLeft.No;
                 choice4d_btn.RightToLeft = RightToLeft.No;
                 money_values_panel.RightToLeft = RightToLeft.No;
-                //Help_Show_All_btn.Text = "Show All Questions";
+
                 withdraw_btn.Text = "Withdraw";
                 //read data
                 dataSet = reader.AsDataSet();
@@ -141,6 +142,8 @@ namespace MillionLE
                 choice3c_btn.Text = "c-" + dataSet.Tables[sheet_index].Rows[row][choice3].ToString();
                 choice4d_btn.Text = "d-" + dataSet.Tables[sheet_index].Rows[row][choice4].ToString();
             }
+            row_values.Clear();//start new memorization
+            row_values.Add(row);//memorize choosen question to eliminate repeatition
             correct_answer = dataSet.Tables[sheet_index].Rows[row][1].ToString();//the correct choice is always in column1
             Change_money_Color(money_index);
         }
@@ -151,13 +154,10 @@ namespace MillionLE
         private void Choice1a_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            //Cursor = Cursors.No;
-            //this.Enabled = false;
             choice1a_btn.Enabled = false;
             choice2b_btn.Enabled = false;
             choice3c_btn.Enabled = false;
             choice4d_btn.Enabled = false;
-            //Exit_btn.Enabled=false;
             withdraw_btn.Enabled = false;
             Leave_btn.Enabled = false;
             help_50_50_btn.Enabled = false;
@@ -182,12 +182,10 @@ namespace MillionLE
         private void Choice2b_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            //Cursor = Cursors.No;
             choice1a_btn.Enabled = false;
             choice2b_btn.Enabled = false;
             choice3c_btn.Enabled = false;
             choice4d_btn.Enabled = false;
-            //Exit_btn.Enabled = false;
             withdraw_btn.Enabled = false;
             Leave_btn.Enabled = false;
             help_50_50_btn.Enabled = false;
@@ -212,12 +210,10 @@ namespace MillionLE
         private void Choice3c_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            //Cursor = Cursors.No;
             choice1a_btn.Enabled = false;
             choice2b_btn.Enabled = false;
             choice3c_btn.Enabled = false;
             choice4d_btn.Enabled = false;
-            //Exit_btn.Enabled = false;
             withdraw_btn.Enabled = false;
             Leave_btn.Enabled = false;
             help_50_50_btn.Enabled = false;
@@ -242,12 +238,10 @@ namespace MillionLE
         private void Choice4d_btn_Click(object sender, EventArgs e)
         {
             //disable rest choices
-            //Cursor = Cursors.No;
             choice1a_btn.Enabled = false;
             choice2b_btn.Enabled = false;
             choice3c_btn.Enabled = false;
             choice4d_btn.Enabled = false;
-            //Exit_btn.Enabled = false;
             withdraw_btn.Enabled = false;
             Leave_btn.Enabled = false;
             help_50_50_btn.Enabled = false;
@@ -366,8 +360,6 @@ namespace MillionLE
 
         private void UpdateChartSeriesData()
         {
-            // Clear the existing data points
-
             var xAxis = people_chart.ChartAreas[0].AxisX;
             if (helper.Language == "arabic")
             {
@@ -581,7 +573,6 @@ namespace MillionLE
                     percentages[3] += reliability;
                     Scale_2_to_100(ref percentages);
                 }
-
             }
             else
             {
@@ -596,7 +587,6 @@ namespace MillionLE
                     //add reliability
                     percentages[0] += reliability;
                     Scale_4_to_100(ref percentages);
-
                 }
                 else if (choice2b_btn.Text != "" && correct_answer == choice2b_btn.Text.Substring(2))//2nd buttton is correct => increase votes of 2nd choice
                 {
@@ -653,7 +643,6 @@ namespace MillionLE
             people_help_btn.Hide();
             x_people_help_btn.Show();
             int[] votes = GenerateRandomReliablePercentages();
-
             //adjust some chart properties
             var xAxis = people_chart.ChartAreas[0].AxisX;
             xAxis.Maximum = 4.5;
@@ -724,7 +713,6 @@ namespace MillionLE
 
         private async void Help_Call_Friend_btn_Click(object sender, EventArgs e)
         {
-            //not added yet
             help_call_btn.Hide();
             x_help_call_btn.Show();
             this.Enabled = false;
@@ -844,7 +832,6 @@ namespace MillionLE
         private void Zoom_in_btn_Click(object sender, EventArgs e)
         {
             this.Scale(new SizeF(1.1f, 1.1f));
-            //label17.Text = this.Size.ToString();
             DialogResult result1 = DialogResult.No;
 
             //handle helper.Language
@@ -876,24 +863,6 @@ namespace MillionLE
                 this.Scale(new SizeF(1.1f, 1.1f));
 
         }
-
-        //private void MoveControlsUpAndLeft()
-        //{
-        //    foreach (Control control in Controls)
-        //    {
-        //        Point newLocation = new Point(control.Location.X - 150, control.Location.Y - 70);
-        //        //Point newLocation = new Point(0, 0);
-        //        control.Location = newLocation;
-        //    }
-        //}
-        //private void MoveControlsDownAndRight()
-        //{
-        //    foreach (Control control in Controls)
-        //    {
-        //        Point newLocation = new Point(control.Location.X + 150, control.Location.Y + 70);
-        //        control.Location = newLocation;
-        //    }
-        //}
 
         private void GameForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -964,7 +933,26 @@ namespace MillionLE
             //generate random question id(row number)
             do
             {
-                row = random.Next(0, 30);
+                //choose question row(number of questions differs)
+                if (helper.Language == "arabic")
+                {
+                    switch (helper.Difficulty)
+                    {
+                        case "Easy":
+                            row = random.Next(0, 233);//number of questions is 233
+                            break;
+                        case "Medium":
+                            row = random.Next(0, 371);//number of questions is 371
+                            break;
+                        case "Hard":
+                            row = random.Next(0, 240);//number of questions is 240
+                            break;
+                    }
+                }
+                else if (helper.Language == "english")
+                {
+                    row = random.Next(0, 30);//number of questions is 30
+                }
             } while (row_values.Contains(row));//if it's repeated question then don't take it(repeat until we find unrepeated question)
             correct_answer = dataSet.Tables[sheet_index].Rows[row][1].ToString();//the correct choice is always in column1
             row_values.Add(row);//memorize choosen question to eliminate repeatition
@@ -1437,58 +1425,42 @@ namespace MillionLE
             switch (del1_index)
             {
                 case 1:
-                    {
-                        choice1a_btn.Text = "";
-                        choice1a_btn.Enabled = false;
-                        break;
-                    }
+                    choice1a_btn.Text = "";
+                    choice1a_btn.Enabled = false;
+                    break;
                 case 2:
-                    {
-                        choice2b_btn.Text = "";
-                        choice2b_btn.Enabled = false;
-                        break;
-                    }
+                    choice2b_btn.Text = "";
+                    choice2b_btn.Enabled = false;
+                    break;
                 case 3:
-                    {
-                        choice3c_btn.Text = "";
-                        choice3c_btn.Enabled = false;
-                        break;
-                    }
+                    choice3c_btn.Text = "";
+                    choice3c_btn.Enabled = false;
+                    break;
                 case 4:
-                    {
-                        choice4d_btn.Text = "";
-                        choice4d_btn.Enabled = false;
-                        break;
-                    }
+                    choice4d_btn.Text = "";
+                    choice4d_btn.Enabled = false;
+                    break;
                 default:
                     break;
             }
             switch (del2_index)
             {
                 case 1:
-                    {
-                        choice1a_btn.Text = "";
-                        choice1a_btn.Enabled = false;
-                        break;
-                    }
+                    choice1a_btn.Text = "";
+                    choice1a_btn.Enabled = false;
+                    break;
                 case 2:
-                    {
-                        choice2b_btn.Text = "";
-                        choice2b_btn.Enabled = false;
-                        break;
-                    }
+                    choice2b_btn.Text = "";
+                    choice2b_btn.Enabled = false;
+                    break;
                 case 3:
-                    {
-                        choice3c_btn.Text = "";
-                        choice3c_btn.Enabled = false;
-                        break;
-                    }
+                    choice3c_btn.Text = "";
+                    choice3c_btn.Enabled = false;
+                    break;
                 case 4:
-                    {
-                        choice4d_btn.Text = "";
-                        choice4d_btn.Enabled = false;
-                        break;
-                    }
+                    choice4d_btn.Text = "";
+                    choice4d_btn.Enabled = false;
+                    break;
                 default:
                     break;
             }
@@ -1514,9 +1486,7 @@ namespace MillionLE
 
         public static void SwapButtonLocations(Button button1, Button button2)
         {
-            Point temp = button1.Location;
-            button1.Location = button2.Location;
-            button2.Location = temp;
+            (button2.Location, button1.Location) = (button1.Location, button2.Location);
         }
 
         private async void Show_Money()

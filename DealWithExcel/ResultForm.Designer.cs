@@ -89,7 +89,7 @@
             // 
             // Credits_btn
             // 
-            this.Credits_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Credits_btn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Credits_btn.BackColor = System.Drawing.Color.Transparent;
             this.Credits_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Credits_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

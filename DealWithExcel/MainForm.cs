@@ -48,17 +48,25 @@ namespace MillionLE
                 progressBar.PerformStep();
                 await Task.Delay(100);
             }
-            if (helper.IsSoundOn)
-            {
-                player = new SoundPlayer(Properties.Resources.hello_and_question1);
-                player.Play();
-            }
             bool isFormOpen = Application.OpenForms.OfType<GameForm>().Any();
             if (isFormOpen)
                 Hide();
             if (helper.Language == "arabic")
             {
-                stream = File.Open(ArabicfilePath, FileMode.Open, FileAccess.Read);
+                try
+                {
+                    stream = File.Open(ArabicfilePath, FileMode.Open, FileAccess.Read);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(ex.Message+"\nاقفل ملفات الداتا لو مفتوحة");
+                    Application.Exit();
+                }
+                if (helper.IsSoundOn)
+                {
+                    player = new SoundPlayer(Properties.Resources.hello_and_question1);
+                    player.Play();
+                }
                 for (int i = 0; i < 3; i++)//60
                 {
                     progressBar.PerformStep();
@@ -73,7 +81,20 @@ namespace MillionLE
             }
             else if (helper.Language == "english")
             {
-                stream = File.Open(EnglishfilePath, FileMode.Open, FileAccess.Read);
+                try
+                {
+                    stream = File.Open(EnglishfilePath, FileMode.Open, FileAccess.Read);
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show(ex.Message + "\nclose data files if it's already opened");
+                    Application.Exit();
+                }
+                if (helper.IsSoundOn)
+                {
+                    player = new SoundPlayer(Properties.Resources.hello_and_question1);
+                    player.Play();
+                }
                 for (int i = 0; i < 3; i++)//60
                 {
                     progressBar.PerformStep();
@@ -86,7 +107,7 @@ namespace MillionLE
                     await Task.Delay(50);
                 }
             }
-            GameForm f = new GameForm(reader,helper);
+            GameForm f = new GameForm(reader, helper);
             progressBar.PerformStep();
             f.ShowDialog();
             //back to main again
@@ -129,7 +150,7 @@ namespace MillionLE
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+
             easy_rad_btn.Checked = true;
             ar_radioButton.Checked = true;
             //show intro

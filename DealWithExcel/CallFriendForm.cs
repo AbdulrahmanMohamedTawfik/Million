@@ -62,54 +62,38 @@ namespace MillionLE
             switch (question)
             {
                 case 0:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._0_ans1;
-                        correct_ans = 1;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._0_ans1;
+                    correct_ans = 1;
+                    break;
                 case 1:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._1_ans3;
-                        correct_ans = 3;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._1_ans3;
+                    correct_ans = 3;
+                    break;
                 case 2:
 
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._2_ans2;
-                        correct_ans = 2;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._2_ans2;
+                    correct_ans = 2;
+                    break;
                 case 3:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._3_ans2;
-                        correct_ans = 2;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._3_ans2;
+                    correct_ans = 2;
+                    break;
                 case 4:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._4_ans1;
-                        correct_ans = 1;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._4_ans1;
+                    correct_ans = 1;
+                    break;
                 case 5:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._5_ans1;
-                        correct_ans = 1;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._5_ans1;
+                    correct_ans = 1;
+                    break;
                 case 6:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._6_ans3;
-                        correct_ans = 3;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._6_ans3;
+                    correct_ans = 3;
+                    break;
                 case 7:
-                    {
-                        QuestionPictureBox.Image = Properties.Resources._7_ans1;
-                        correct_ans = 1;
-                        break;
-                    }
+                    QuestionPictureBox.Image = Properties.Resources._7_ans1;
+                    correct_ans = 1;
+                    break;
                 default:
                     break;
             }
@@ -138,41 +122,33 @@ namespace MillionLE
                 switch (item)
                 {
                     case 1:
-                        {
-                            ans[0] = "أ";
-                            if (max > 35)
-                                ans[1] = "على الارجح";
-                            else
-                                ans[1] = "لست متأكد";
-                            break;
-                        }
+                        ans[0] = "أ";
+                        if (max > 35)
+                            ans[1] = "على الارجح";
+                        else
+                            ans[1] = "لست متأكد";
+                        break;
                     case 2:
-                        {
-                            ans[0] = "ب";
-                            if (max > 35)
-                                ans[1] = "على الارجح";
-                            else
-                                ans[1] = "لست متأكد";
-                            break;
-                        }
+                        ans[0] = "ب";
+                        if (max > 35)
+                            ans[1] = "على الارجح";
+                        else
+                            ans[1] = "لست متأكد";
+                        break;
                     case 3:
-                        {
-                            ans[0] = "ج";
-                            if (max > 35)
-                                ans[1] = "على الارجح";
-                            else
-                                ans[1] = "لست متأكد";
-                            break;
-                        }
+                        ans[0] = "ج";
+                        if (max > 35)
+                            ans[1] = "على الارجح";
+                        else
+                            ans[1] = "لست متأكد";
+                        break;
                     case 4:
-                        {
-                            ans[0] = "د";
-                            if (max > 35)
-                                ans[1] = "على الارجح";
-                            else
-                                ans[1] = "لست متأكد";
-                            break;
-                        }
+                        ans[0] = "د";
+                        if (max > 35)
+                            ans[1] = "على الارجح";
+                        else
+                            ans[1] = "لست متأكد";
+                        break;
                 }
             }
             else if (helper.Language == "english")
@@ -180,41 +156,33 @@ namespace MillionLE
                 switch (item)
                 {
                     case 1:
-                        {
-                            ans[0] = "a";
-                            if (max > 35)
-                                ans[1] = "Most Probably";
-                            else
-                                ans[1] = "I'm not sure";
-                            break;
-                        }
+                        ans[0] = "a";
+                        if (max > 35)
+                            ans[1] = "Most Probably";
+                        else
+                            ans[1] = "I'm not sure";
+                        break;
                     case 2:
-                        {
-                            ans[0] = "b";
-                            if (max > 35)
-                                ans[1] = "Most Probably";
-                            else
-                                ans[1] = "I'm not sure";
-                            break;
-                        }
+                        ans[0] = "b";
+                        if (max > 35)
+                            ans[1] = "Most Probably";
+                        else
+                            ans[1] = "I'm not sure";
+                        break;
                     case 3:
-                        {
-                            ans[0] = "c";
-                            if (max > 35)
-                                ans[1] = "Most Probably";
-                            else
-                                ans[1] = "I'm not sure";
-                            break;
-                        }
+                        ans[0] = "c";
+                        if (max > 35)
+                            ans[1] = "Most Probably";
+                        else
+                            ans[1] = "I'm not sure";
+                        break;
                     case 4:
-                        {
-                            ans[0] = "d";
-                            if (max > 35)
-                                ans[1] = "Most Probably";
-                            else
-                                ans[1] = "I'm not sure";
-                            break;
-                        }
+                        ans[0] = "d";
+                        if (max > 35)
+                            ans[1] = "Most Probably";
+                        else
+                            ans[1] = "I'm not sure";
+                        break;
                 }
             }
             return ans;

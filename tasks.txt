@@ -1,0 +1,21 @@
+اخلي ملف الداتا بباسورد يتعرض لليوزر لما يكسب المليون -✔
+ازود عدد الاسئلة-✔
+اخلي الانترفيس اوتوماتيك يعني ينفع علي اي حجم شاشة يعني الابعاد تبقا نسبية-✔
+
+اضيف الصوت-✔
+اعمل وسيلة المساعدة الاتصال بصديق -✔
+اظبط توقيت ظهور الحاجات مع الصوت -✔
+اظبط الاصوات بتاعة الجمهور و يستحسن اخليها نسبة -✔
+اخلي عرض الاسئلة كلها وسيلة مساعدة تظهر كل الداتا لمدة ثانيتين مثلا -✔
+ضبط وقت الصوت مع وقت تغيير لون الفلوس مع وقت ظهور المبلغ فوق-✔
+
+-add counter for call friend✔
+
+-add friend voice✔
+-add some reliability to people opinion✔
+-add change question help
+-improve End Form (ex: add github link,facebook,...etc)✔
+-add result form music✔
+-remove deafult button highlight(white rectangle around button)✔
+-اخلي اسئلة الشعر تظهر عند ال500
+-

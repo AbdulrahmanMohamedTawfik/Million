@@ -15,7 +15,6 @@ namespace MillionLE
             InitializeComponent();
             language = lang;
             this.helper = helper;
-            //Written_text.opacity
             //sync sound with Result form
             if (helper.IsSoundOn)
             {
@@ -61,27 +60,6 @@ namespace MillionLE
                     Written_text.Text += text[i][j];
                 }
                 Written_text.AppendText(Environment.NewLine);
-                //if (i == 3)
-                //{
-                //    for (int k = 0; k < 10; k++)
-                //    {
-                //        await Task.Delay(200);                        
-                //        Written_text.AppendText(Environment.NewLine);
-                //        Written_text.Text += "^-^";
-                //        Written_text.ScrollToCaret();
-                //    }
-                //}
-                //if (i == text.Length-1)
-                //{
-                //    for (int k = 0; k < 5; k++)
-                //    {
-                //        await Task.Delay(500);
-                //        Written_text.AppendText(Environment.NewLine);
-                //        Written_text.Text += text[i];
-                //        Written_text.ScrollToCaret();
-                //        Written_text.AutoScrollOffset = new System.Drawing.Point();
-                //    }
-                //}
             }
         }
 
